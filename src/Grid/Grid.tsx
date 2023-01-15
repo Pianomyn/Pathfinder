@@ -2,10 +2,17 @@ import "./Grid.css";
 
 import Cell from "./Cell";
 import { CellId } from "../types";
-import React from "react";
+import React, { useState } from "react";
 
 const Grid = ({ height, width }: CellId) => {
-  var a = 0;
+  const [currentStartCell, setCurrentStartCell] = useState<CellId>({
+    height: -1,
+    width: -1,
+  });
+  const [currentTargetCell, setCurrentTargetCell] = useState<CellId>({
+    height: -1,
+    width: -1,
+  });
 
   function generateRow(width: number, h: number) {
     var cells: Cell[] = [];
@@ -24,7 +31,7 @@ const Grid = ({ height, width }: CellId) => {
       rows.push(currentRow);
     }
     return (
-      <table className="grid">
+      <table className="grid hover:cursor-pointer">
         <tbody>{rows}</tbody>
       </table>
     );
