@@ -1,6 +1,5 @@
 .cell {
   height: 25px;
   width: 25px;
-  border: solid;
-  margin: 0;
+  border: 1px solid rgb(0, 0, 0);
 }

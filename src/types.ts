@@ -1,6 +1,6 @@
 export type CellId = {
-  width: number;
   height: number;
+  width: number;
 };
 
 export enum CellColorMapping {

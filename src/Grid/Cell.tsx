@@ -20,8 +20,7 @@ function Cell({
   weight = 1,
   heuristic = 0,
 }: CellProps) {
-  console.log(id);
-  return <td className={`cell ${cellTypeColor}`}></td>;
+  return <td className={`cell ${cellTypeColor}`} />;
 }
 
 type Cell = ReturnType<typeof Cell>;

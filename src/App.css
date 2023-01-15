@@ -6,3 +6,41 @@
   --light: rgb(248; 249; 250);
   --dark: rgb(52, 58, 64);
 }
+
+.app {
+  font-family: "Arial", Helvetica, Lato, sans-serif;
+}
+
+/* Flexbox ------------------------------------------------------------------ */
+.flex-row {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center-ma {
+  justify-content: center;
+}
+
+.center-ca {
+  align-items: center;
+}
+/* -------------------------------------------------------------------------- */
+
+.dimensions-inputs-div {
+  display: flex;
+}
+
+.dimensions-input {
+  margin: 1rem;
+}
+
+.grid-div {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
