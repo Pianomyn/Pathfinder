@@ -1,13 +1,13 @@
-export interface CellId {
-  x: number;
-  y: number;
-}
+export type CellId = {
+  width: number;
+  height: number;
+};
 
-export enum CellTypeColorMapping {
-  SOURCE = "lightgreen",
-  TARGET = "lightcoral",
-  UNVISITED = "white",
-  VISITED = "cornflowerblue",
-  WEIGHT = "grey",
-  WALL = "black",
+export enum CellColorMapping {
+  SOURCE = "success",
+  TARGET = "danger",
+  UNVISITED = "light",
+  VISITED = "primary",
+  WEIGHT = "secondary",
+  WALL = "dark",
 }
