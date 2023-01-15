@@ -1,11 +1,12 @@
 {
-  "homepage": "pianomyn.github.io/pathfinder/",
+  "homepage": "https://pianomyn.github.io/pathfinder",
   "name": "pathfinder",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/output.css",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "build": "tsc && vite build",
