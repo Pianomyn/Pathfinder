@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <h1 className="text-2xl text-center">Pathfinder</h1>
+      <h1 className="text-2xl text-center">Pathfinder test</h1>
       <div id="options bar" className="flex flex-row justify-center">
         {/* Should move this to a OptionsBar Component */}
         <div className="flex flex-column w-2/12">
