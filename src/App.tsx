@@ -34,20 +34,15 @@ export default function App() {
         {/* Should move this to a OptionsBar Component */}
         <div className="flex flex-column w-2/12">
           <div className="flex flex-row justify-center w-full">
+            <select className="p-2 w-3/12 mx-0.5 mt-3 text-center">
+              <option>BFS</option>
+              <option>DFS</option>
+              <option>IDDFS</option>
+              <option>A*</option>
+              <option>Greedy</option>
+            </select>
             <input
-              className="p-2 m-3 w-3/12 border-solid"
-              type="text"
-              placeholder="Width"
-              onChange={(e) => {
-                setHeightOrWidth(
-                  e.target.value,
-                  setWidth,
-                  setHideHeightWidthError
-                );
-              }}
-            ></input>
-            <input
-              className="p-2 m-3 w-3/12 border-solid"
+              className="p-2 mt-3 mx-0.5 w-3/12 border-solid text-center"
               type="text"
               placeholder="Height"
               onChange={(e) => {
@@ -58,13 +53,26 @@ export default function App() {
                 );
               }}
             ></input>
+            <input
+              className="p-2 mt-3 mx-0.5 w-3/12 border-solid text-center"
+              type="text"
+              placeholder="Width"
+              onChange={(e) => {
+                setHeightOrWidth(
+                  e.target.value,
+                  setWidth,
+                  setHideHeightWidthError
+                );
+              }}
+            ></input>
           </div>
-          <small
-            hidden={hideHeightWidthError}
-            className="text-center text-red-500"
-          >
-            Height and width must be an integer larger than 0
-          </small>
+          {hideHeightWidthError ? (
+            <small className="text-white">Hidden Message</small>
+          ) : (
+            <small className="text-center text-red-500">
+              Height and width must be an integer larger than 0
+            </small>
+          )}
         </div>
       </div>
       <div className="grid-div">
