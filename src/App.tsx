@@ -42,7 +42,7 @@ export default function App() {
               <option>Greedy</option>
             </select>
             <input
-              className="p-2 mt-3 mx-0.5 w-3/12 border-solid text-center border rounded"
+              className="p-2 mt-3 mx-0.5 w-3/12 border-solid border rounded"
               type="text"
               placeholder="Height"
               onChange={(e) => {
@@ -54,7 +54,7 @@ export default function App() {
               }}
             ></input>
             <input
-              className="p-2 mt-3 mx-0.5 w-3/12 border-solid text-center border rounded"
+              className="p-2 mt-3 mx-0.5 w-3/12 border-solid border rounded"
               type="text"
               placeholder="Width"
               onChange={(e) => {
