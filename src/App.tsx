@@ -34,7 +34,7 @@ export default function App() {
         {/* Should move this to a OptionsBar Component */}
         <div className="flex flex-column w-2/12">
           <div className="flex flex-row justify-center w-full">
-            <select className="p-2 w-3/12 mx-0.5 mt-3 text-center">
+            <select className="p-2 w-4/12 mx-0.5 mt-3 text-center border  rounded">
               <option>BFS</option>
               <option>DFS</option>
               <option>IDDFS</option>
@@ -42,7 +42,7 @@ export default function App() {
               <option>Greedy</option>
             </select>
             <input
-              className="p-2 mt-3 mx-0.5 w-3/12 border-solid text-center"
+              className="p-2 mt-3 mx-0.5 w-3/12 border-solid text-center border rounded"
               type="text"
               placeholder="Height"
               onChange={(e) => {
@@ -54,7 +54,7 @@ export default function App() {
               }}
             ></input>
             <input
-              className="p-2 mt-3 mx-0.5 w-3/12 border-solid text-center"
+              className="p-2 mt-3 mx-0.5 w-3/12 border-solid text-center border rounded"
               type="text"
               placeholder="Width"
               onChange={(e) => {
