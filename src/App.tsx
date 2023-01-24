@@ -44,7 +44,7 @@ export default function App() {
             <input
               className="p-2 mt-3 mx-0.5 w-3/12 border-solid border rounded"
               type="text"
-              placeholder="Height"
+              placeholder="H"
               onChange={(e) => {
                 setHeightOrWidth(
                   e.target.value,
@@ -56,7 +56,7 @@ export default function App() {
             <input
               className="p-2 mt-3 mx-0.5 w-3/12 border-solid border rounded"
               type="text"
-              placeholder="Width"
+              placeholder="W"
               onChange={(e) => {
                 setHeightOrWidth(
                   e.target.value,
