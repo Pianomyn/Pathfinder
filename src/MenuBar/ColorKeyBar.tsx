@@ -45,7 +45,7 @@ const ColorKey = ({
 const ColorKeyBar = ({
   setCurrentCellTypeToPlace,
 }: {
-  setCurrentCellTypeToPlace: (value: string) => void;
+  setCurrentCellTypeToPlace: (value: string | null) => void;
 }) => {
   const [currentlySelectedIndex, setCurrentlySelectedIndex] = useState(-1);
   return (
