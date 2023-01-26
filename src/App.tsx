@@ -1,5 +1,6 @@
 import "./App.css";
 
+import { AllColorMapping } from "./types";
 import Grid from "./Grid/Grid";
 import PlayBar from "./MenuBar/PlayBar";
 import SettingsBar from "./MenuBar/SettingsBar";
@@ -12,6 +13,9 @@ export default function App() {
   const [width, setWidth] = useState<number>(DEFAULT_HEIGHT_OR_WIDTH);
   const [height, setHeight] = useState<number>(DEFAULT_HEIGHT_OR_WIDTH);
   const [hideInputError, setHideInputError] = useState<boolean>(true);
+  const [currentCellTypeToPlace, setCurrentCellTypeToPlace] = useState<
+    string | null
+  >(null);
 
   return (
     <div className="app">
@@ -25,7 +29,7 @@ export default function App() {
           setHideInputError={setHideInputError}
         />
         <PlayBar />
-        <ColorKeyBar />
+        <ColorKeyBar setCurrentCellTypeToPlace={setCurrentCellTypeToPlace}/>
       </div>
       <div className="grid-div">
         <Grid height={height} width={width} />

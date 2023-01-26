@@ -1,11 +1,11 @@
 import "./Cell.css";
 
-import { CellId, CellColorMapping } from "../types";
+import { CellId, AllColorMapping } from "../types";
 import React, { useEffect, useState } from "react";
 
 type CellProps = {
   id: CellId;
-  cellTypeColor?: CellColorMapping;
+  cellTypeColor?: AllColorMapping;
   neighbourIds?: CellId[];
   previouslyVisitedId?: CellId | {};
   weight?: number;
@@ -14,7 +14,7 @@ type CellProps = {
 
 function Cell({
   id,
-  cellTypeColor = CellColorMapping.Unvisited,
+  cellTypeColor = AllColorMapping.Unvisited,
   neighbourIds = [],
   previouslyVisitedId = {},
   weight = 1,

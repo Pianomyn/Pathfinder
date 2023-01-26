@@ -42,7 +42,7 @@ const SettingsBar = ({
         <input
           className="p-2 mx-0.5 w-4/12 border-solid border rounded"
           type="text"
-          placeholder="H"
+          placeholder="H (30)"
           onChange={(e) => {
             setHeightOrWidth(e.target.value, setHeight, setHideInputError);
           }}
@@ -50,7 +50,7 @@ const SettingsBar = ({
         <input
           className="p-2 mx-0.5 w-4/12 border-solid border rounded"
           type="text"
-          placeholder="W"
+          placeholder="W (30)"
           onChange={(e) => {
             setHeightOrWidth(e.target.value, setWidth, setHideInputError);
           }}
