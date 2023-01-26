@@ -23,7 +23,7 @@ const ColorKey = ({
     <div
       id={`color-key-${name}-${color}`}
       className={`hover:cursor-pointer border border-solid rounded flex mx-0.5 p-2 ${
-        index === currentlySelectedIndex ? "bg-blue-500" : ""
+        index === currentlySelectedIndex ? "bg-blue-300" : ""
       }`}
       onClick={() => {
         console.log(name);
