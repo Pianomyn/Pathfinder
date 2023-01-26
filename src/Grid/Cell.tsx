@@ -14,7 +14,7 @@ type CellProps = {
 
 function Cell({
   id,
-  cellTypeColor = CellColorMapping.UNVISITED,
+  cellTypeColor = CellColorMapping.Unvisited,
   neighbourIds = [],
   previouslyVisitedId = {},
   weight = 1,
