@@ -18,15 +18,12 @@ const ColorKey = ({
   setCurrentlySelectedIndex,
   setCurrentCellToPlace,
 }: ColorKeyProps) => {
-  console.log(index);
   return (
     <div
-      id={`color-key-${name}-${color}`}
       className={`hover:cursor-pointer border border-solid rounded flex mx-0.5 p-2 ${
         index === currentlySelectedIndex ? "bg-blue-300" : ""
       }`}
       onClick={() => {
-        console.log(name);
         if (index === currentlySelectedIndex) {
           setCurrentlySelectedIndex(-1);
           setCurrentCellToPlace(null);
@@ -53,6 +50,7 @@ const ColorKeyBar = ({
       {Object.entries(PlaceableColorMapping).map(([key, val], index) => {
         return (
           <ColorKey
+            key={`color-key-${key}-${val}`}
             name={key}
             color={val}
             index={index}
