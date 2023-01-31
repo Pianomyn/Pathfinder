@@ -30,9 +30,9 @@ const SettingsBar = ({
   setHideInputError,
 }: SettingsBarProps) => {
   return (
-    <div className="flex items-center w-3/12 mx-2">
+    <div className="flex items-center mx-2">
       <div className="flex items-center justify-center w-full">
-        <select className="p-2 w-6/12 mx-0.5 text-center border-solid border rounded">
+        <select className="p-2 mx-0.5 text-center border-solid border rounded">
           <option>BFS</option>
           <option>DFS</option>
           <option>IDDFS</option>
@@ -40,7 +40,7 @@ const SettingsBar = ({
           <option>Greedy</option>
         </select>
         <input
-          className="p-2 mx-0.5 w-3/12 border-solid border rounded"
+          className="p-2 mx-0.5 border-solid border rounded"
           type="text"
           placeholder={`H (${DEFAULT_HEIGHT_AND_WIDTH})`}
           onChange={(e) => {
@@ -48,7 +48,7 @@ const SettingsBar = ({
           }}
         ></input>
         <input
-          className="p-2 mx-0.5 w-3/12 border-solid border rounded"
+          className="p-2 mx-0.5 border-solid border rounded"
           type="text"
           placeholder={`W (${DEFAULT_HEIGHT_AND_WIDTH})`}
           onChange={(e) => {
