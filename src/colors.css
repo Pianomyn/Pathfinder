@@ -1,0 +1,27 @@
+.primary {
+  background-color: rgb(59, 130, 246);
+}
+
+.secondary {
+  background-color: rgb(106, 115, 128);
+}
+
+.success {
+  background-color: rgb(33, 197, 93);
+}
+
+.danger {
+  background-color: rgb(240, 68, 68);
+}
+
+.light {
+  background-color: rgb(255, 255, 255);
+}
+
+.dark {
+  background-color: rgb(39, 39, 42);
+}
+
+.selected-element {
+  background-color: rgb(146, 197, 253);
+}

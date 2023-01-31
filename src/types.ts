@@ -3,12 +3,23 @@ export interface CellId {
   width: number;
 }
 
-export enum PlaceableColorMapping {
+export enum SinglePlaceableColorMapping {
   Source = "bg-green-500",
   Target = "bg-red-500",
+}
+
+export enum MultiplePlaceableColorMapping {
   Weight = "bg-gray-500",
   Wall = "bg-zinc-800",
 }
+
+export type PlaceableColorMapping =
+  | SinglePlaceableColorMapping
+  | MultiplePlaceableColorMapping;
+export const PlaceableColorMapping = {
+  ...SinglePlaceableColorMapping,
+  ...MultiplePlaceableColorMapping,
+};
 
 export enum UnplaceableColorMapping {
   Unvisited = "bg-white",

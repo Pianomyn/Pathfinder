@@ -1,13 +1,17 @@
-import { PlaceableColorMapping, AllColorMapping } from "../types";
+import {
+  PlaceableColorMapping,
+  AllColorMapping,
+  MultiplePlaceableMapping,
+} from "../types";
 import { useState } from "react";
 
 interface ColorKeyProps {
-  name: string;
+  name: PlaceableColorMapping;
   color: string;
   index: number;
   currentlySelectedIndex: number;
   setCurrentlySelectedIndex: (value: number) => void;
-  setCurrentCellToPlace: (value: string | null) => void;
+  setCurrentCellToPlace: (value: PlaceableColorMapping | null) => void;
 }
 
 const ColorKey = ({
@@ -30,6 +34,7 @@ const ColorKey = ({
         } else {
           setCurrentlySelectedIndex(index);
           setCurrentCellToPlace(name);
+          //console.log(name);
         }
       }}
     >
@@ -42,7 +47,7 @@ const ColorKey = ({
 const ColorKeyBar = ({
   setCurrentCellTypeToPlace,
 }: {
-  setCurrentCellTypeToPlace: (value: string | null) => void;
+  setCurrentCellTypeToPlace: (value: PlaceableColorMapping | null) => void;
 }) => {
   const [currentlySelectedIndex, setCurrentlySelectedIndex] = useState(-1);
   return (
