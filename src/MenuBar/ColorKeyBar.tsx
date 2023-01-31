@@ -1,7 +1,7 @@
 import {
   PlaceableColorMapping,
   AllColorMapping,
-  MultiplePlaceableMapping,
+  MultiplePlaceableColorMapping,
 } from "../types";
 import { useState } from "react";
 
@@ -56,7 +56,7 @@ const ColorKeyBar = ({
         return (
           <ColorKey
             key={`color-key-${key}-${val}`}
-            name={key}
+            name={key as PlaceableColorMapping}
             color={val}
             index={index}
             currentlySelectedIndex={currentlySelectedIndex}

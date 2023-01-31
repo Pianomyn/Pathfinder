@@ -2,7 +2,7 @@ import "./App.css";
 
 import {
   AllColorMapping,
-  MultiplePlaceableMapping,
+  MultiplePlaceableColorMapping,
   PlaceableColorMapping,
   CellId,
 } from "./types";
