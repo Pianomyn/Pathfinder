@@ -1,6 +1,10 @@
 import "./Cell.css";
 
-import { CellId, AllColorMapping, PlaceableColorMapping } from "../types";
+import {
+  CellId,
+  AllColorMapping,
+  PlaceableColorMapping,
+} from "../Utility/types";
 import React, { useEffect, useState } from "react";
 
 type CellProps = {

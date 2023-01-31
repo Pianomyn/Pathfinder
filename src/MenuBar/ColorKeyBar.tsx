@@ -2,7 +2,7 @@ import {
   PlaceableColorMapping,
   AllColorMapping,
   MultiplePlaceableColorMapping,
-} from "../types";
+} from "../Utility/types";
 import { useState } from "react";
 
 interface ColorKeyProps {

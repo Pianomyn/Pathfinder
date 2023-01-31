@@ -1,7 +1,7 @@
 import "./Grid.css";
 
 import Cell from "./Cell";
-import { CellId, PlaceableColorMapping } from "../types";
+import { CellId, PlaceableColorMapping } from "../Utility/types";
 import React, { useState } from "react";
 
 interface GridProps {
