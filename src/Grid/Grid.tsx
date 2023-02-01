@@ -3,7 +3,7 @@ import BFS from "../Algorithms/BFS";
 
 import Cell from "./Cell";
 import { CellId, PlaceableColorMapping } from "../Utility/types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface GridProps {
   height: number;
@@ -15,7 +15,7 @@ interface GridProps {
   setTargetCellId: (value: CellId | null) => void;
 }
 
-const Grid = ({
+export default function Grid({
   height,
   width,
   currentCellToPlace,
@@ -23,9 +23,14 @@ const Grid = ({
   targetCellId,
   setSourceCellId,
   setTargetCellId,
-}: GridProps) => {
+}: GridProps) {
   const [mouseDown, setMouseDown] = useState<boolean>(false);
-  var bfs = new BFS(height, width, sourceCellId, targetCellId);
+  //var bfs = new BFS(height, width, sourceCellId, targetCellId);
+
+  useEffect(() => {
+    setSourceCellId(null);
+    setTargetCellId(null);
+  }, [height, width]);
 
   function generateRow(width: number, h: number) {
     var cells: Cell[] = [];
@@ -40,6 +45,8 @@ const Grid = ({
           targetCellId={targetCellId}
           setSourceCellId={setSourceCellId}
           setTargetCellId={setTargetCellId}
+          height={height}
+          width={width}
         />
       );
     }
@@ -64,6 +71,4 @@ const Grid = ({
     );
   }
   return <>{generateTable(height, width)}</>;
-};
-
-export default Grid;
+}

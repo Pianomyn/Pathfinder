@@ -2,8 +2,8 @@ import Algorithm from "./AlgorithmTemplate";
 import { CellId } from "../Utility/types";
 
 export default class BFS implements Algorithm {
-  gridHeight: number;
-  gridWidth: number;
+  height: number;
+  width: number;
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
   // Previously visited
@@ -11,16 +11,16 @@ export default class BFS implements Algorithm {
   // Heuristic
 
   constructor(
-    gridHeight: number,
-    gridWidth: number,
+    height: number,
+    width: number,
     sourceCellId: CellId | null,
     targetCellId: CellId | null
   ) {
-    this.gridHeight = gridHeight;
-    this.gridWidth = gridWidth;
+    this.height = height;
+    this.width = width;
     this.sourceCellId = sourceCellId;
     this.targetCellId = targetCellId;
-    console.log(gridHeight);
+    console.log(height);
   }
   returnShortestPath() {}
   findShortestPath() {}

@@ -1,8 +1,8 @@
 import { CellId } from "../Utility/types";
 
 export default interface Algorithm {
-  gridHeight: number;
-  gridWidth: number;
+  height: number;
+  width: number;
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
 
