@@ -11,8 +11,13 @@ function setHeightOrWidth(
     isHeight ? setDimension(DEFAULT_HEIGHT) : setDimension(DEFAULT_WIDTH);
     setHideError(true);
   } else if (newDimension.match(/^[1-9][0-9]*$/)) {
-    setDimension(parseInt(newDimension));
-    setHideError(true);
+    const newDimensionInt = parseInt(newDimension);
+    if (newDimensionInt > 100) {
+      setHideError(false);
+    } else {
+      setDimension(newDimensionInt);
+      setHideError(true);
+    }
   } else {
     setHideError(false);
   }
@@ -82,7 +87,7 @@ const SettingsBar = ({
         <></>
       ) : (
         <small className="text-center text-red-500">
-          Height and width must be integers larger than 0
+          Height and width must be integers between 1 and 100 inclusive.
         </small>
       )}
     </div>
