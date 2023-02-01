@@ -15,10 +15,6 @@ type CellProps = {
   targetCellId: CellId | null;
   setSourceCellId: (value: CellId | null) => void;
   setTargetCellId: (value: CellId | null) => void;
-  neighbourIds?: CellId[];
-  previouslyVisitedId?: CellId | {};
-  weight?: number;
-  heuristic?: number;
 };
 
 function Cell({
@@ -29,10 +25,6 @@ function Cell({
   targetCellId,
   setSourceCellId,
   setTargetCellId,
-  neighbourIds = [],
-  previouslyVisitedId = {},
-  weight = 1,
-  heuristic = 0,
 }: CellProps) {
   const [cellColor, setCellColor] = useState<AllColorMapping>(
     AllColorMapping.Unvisited

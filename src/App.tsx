@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { DEFAULT_HEIGHT_AND_WIDTH } from "./Utility/constants";
+import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "./Utility/constants";
 import {
   AllColorMapping,
   MultiplePlaceableColorMapping,
@@ -14,8 +14,8 @@ import ColorKeyBar from "./MenuBar/ColorKeyBar";
 import React, { useState } from "react";
 
 export default function App() {
-  const [width, setWidth] = useState<number>(DEFAULT_HEIGHT_AND_WIDTH);
-  const [height, setHeight] = useState<number>(DEFAULT_HEIGHT_AND_WIDTH);
+  const [width, setWidth] = useState<number>(DEFAULT_WIDTH);
+  const [height, setHeight] = useState<number>(DEFAULT_HEIGHT);
   const [hideInputError, setHideInputError] = useState<boolean>(true);
 
   const [currentCellTypeToPlace, setCurrentCellTypeToPlace] =
@@ -25,16 +25,25 @@ export default function App() {
 
   return (
     <div className="font-sans">
-      <h1 className="text-3xl mt-2 text-center">Pathfinder</h1>
-      <div id="options bar" className="flex justify-center my-3">
-        <SettingsBar
-          setHeight={setHeight}
-          setWidth={setWidth}
-          hideInputError={hideInputError}
-          setHideInputError={setHideInputError}
-        />
-        <PlayBar />
-        <ColorKeyBar setCurrentCellTypeToPlace={setCurrentCellTypeToPlace} />
+      <h1 className="text-2xl mt-2 text-center">Pathfinder</h1>
+      <div id="options-bar-wrapper" className="w-screen flex justify-center">
+        <div
+          id="options-bar"
+          className="flex w-screen items-start justify-evenly my-3"
+        >
+          <SettingsBar
+            setHeight={setHeight}
+            setWidth={setWidth}
+            hideInputError={hideInputError}
+            setHideInputError={setHideInputError}
+            height={height}
+            width={width}
+            sourceCellId={sourceCellId}
+            targetCellId={targetCellId}
+          />
+          <PlayBar />
+          <ColorKeyBar setCurrentCellTypeToPlace={setCurrentCellTypeToPlace} />
+        </div>
       </div>
       <div className="w-screen flex justify-center items-center">
         <Grid

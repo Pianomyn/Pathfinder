@@ -1,4 +1,5 @@
 import "./Grid.css";
+import BFS from "../Algorithms/BFS";
 
 import Cell from "./Cell";
 import { CellId, PlaceableColorMapping } from "../Utility/types";
@@ -24,6 +25,7 @@ const Grid = ({
   setTargetCellId,
 }: GridProps) => {
   const [mouseDown, setMouseDown] = useState<boolean>(false);
+  var bfs = new BFS(height, width, sourceCellId, targetCellId);
 
   function generateRow(width: number, h: number) {
     var cells: Cell[] = [];

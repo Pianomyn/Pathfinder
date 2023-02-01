@@ -1,1 +1,2 @@
-export const DEFAULT_HEIGHT_AND_WIDTH = 30;
+export const DEFAULT_HEIGHT = 20;
+export const DEFAULT_WIDTH = 50;
