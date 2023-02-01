@@ -87,7 +87,7 @@ const SettingsBar = ({
         <></>
       ) : (
         <small className="text-center text-red-500">
-          Height and width must be integers between 1 and 100 inclusive.
+          Height and Width must be integer values between 1 and 100 inclusive.
         </small>
       )}
     </div>
