@@ -1,6 +1,6 @@
 export interface CellId {
-  height: number;
-  width: number;
+  x: number;
+  y: number;
 }
 
 export enum SinglePlaceableColorMapping {

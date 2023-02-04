@@ -31,21 +31,15 @@ export default function Grid({
   setTargetCellId,
 }: GridProps) {
   const [mouseDown, setMouseDown] = useState<boolean>(false);
-  console.log(graph);
-  var cell = document.getElementById("3-2");
-  if (cell) {
-    //cell.classList.remove(AllColorMapping.Unvisited);
-    //cell.classList.add(AllColorMapping.Wall);
-  }
 
-  function generateRow(width: number, h: number) {
+  function generateRow(width: number, y: number) {
     var cells: Cell[] = [];
-    for (var w = 0; w < width; w++) {
+    for (var x = 0; x < width; x++) {
       cells.push(
         <Cell
-          key={`${w}-${h}`}
+          key={`${x}-${y}`}
           graph={graph}
-          cellId={{ width: w, height: h }}
+          cellId={{ x: x, y: y }}
           mouseDown={mouseDown}
           currentCellToPlace={currentCellToPlace}
           sourceCellId={sourceCellId}
@@ -57,14 +51,14 @@ export default function Grid({
         />
       );
     }
-    return <tr key={`${h}`}>{cells}</tr>;
+    return <tr key={`${y}`}>{cells}</tr>;
   }
 
   function generateTable(height: number, width: number) {
     var rows: JSX.Element[] = [];
-    for (var h = 0; h < height; h++) {
-      //var row = <tr id={`grid-row-${h}`}></tr>;
-      var currentRow = generateRow(width, h);
+    for (var y = 0; y < height; y++) {
+      //var row = <tr id={`grid-row-${y}`}></tr>;
+      var currentRow = generateRow(width, y);
       rows.push(currentRow);
     }
     return (

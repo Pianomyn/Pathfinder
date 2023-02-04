@@ -22,20 +22,59 @@ export default class Graph {
   }
 
   // Getters
-  getNode(height: number, width: number): Node {
-    return this.graph[height][width];
+  getGraphHeight() {
+    return this.height;
+  }
+
+  getGraphWidth() {
+    return this.width;
+  }
+
+  getSourceCellId(): CellId | null {
+    return this.sourceCellId;
+  }
+
+  getTargetCellId(): CellId | null {
+    return this.targetCellId;
+  }
+
+  getNode(cellId: CellId): Node {
+    // Assumes x and y are valid
+    const { y, x } = cellId;
+    //console.log("X AND Y", y, x);
+    return this.graph[y][x];
+  }
+
+  // Setters
+  setSourceCellId(cellId: CellId | null) {
+    this.sourceCellId = cellId;
+  }
+
+  setTargetCellId(cellId: CellId | null) {
+    this.targetCellId = cellId;
   }
 
   generateGraph(height: number, width: number): Node[][] {
     var graph: Node[][] = [];
-    for (var h = 0; h < height; h++) {
+    for (var y = 0; y < height; y++) {
       var row: Node[] = [];
-      for (var w = 0; w < width; w++) {
+      for (var x = 0; x < width; x++) {
         // Check if source or target node
-        // if (sourceCellId)
-        // if (targetCellId)
-        // const cellId = {height: h, width: w}
-        row.push(new Node());
+        var newNode = new Node({ y: y, x: x });
+        if (
+          this.sourceCellId &&
+          this.sourceCellId.y === y &&
+          this.sourceCellId.x === x
+        ) {
+          //newNode.isSource = true;
+        } else if (
+          this.targetCellId &&
+          this.targetCellId.y === y &&
+          this.targetCellId.x === x
+        ) {
+          //newNode.isTarget = true;
+        }
+        row.push(newNode);
       }
       graph.push(row);
     }

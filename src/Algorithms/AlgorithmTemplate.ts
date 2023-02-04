@@ -1,11 +1,19 @@
 import { CellId } from "../Utility/types";
+import Graph from "./Graph/Graph";
+import Node from "./Graph/Node";
 
-export default interface Algorithm {
-  height: number;
-  width: number;
-  sourceCellId: CellId | null;
-  targetCellId: CellId | null;
+export default abstract class Algorithm {
+  graph: Graph;
+  expanded: Node[];
+  // Previously visited
+  // Weight
+  // Heuristic
 
-  returnShortestPath: () => void;
-  findShortestPath: () => void;
+  constructor(graph: Graph) {
+    this.graph = graph;
+    this.expanded = [];
+  }
+
+  //returnShortestPath: () => void;
+  //findShortestPath: () => void;
 }

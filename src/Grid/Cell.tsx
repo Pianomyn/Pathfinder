@@ -48,7 +48,10 @@ function Cell({
   // Unreadable :/ need to refactor.
   return (
     <td
-      id={`${cellId.height}-${cellId.width}`}
+      id={`${cellId.y}-${cellId.x}`}
+      className={`cell ${cellColor} ${
+        cellId === sourceCellId ? PlaceableColorMapping.Source : ""
+      } ${cellId === targetCellId ? PlaceableColorMapping.Target : ""}`}
       onMouseOver={() => {
         if (
           mouseDown &&
@@ -64,25 +67,34 @@ function Cell({
           if (JSON.stringify(sourceCellId) === JSON.stringify(cellId)) {
             setSourceCellId(null);
           }
+
+          graph
+            .getNode(cellId)
+            .setCellType(PlaceableColorMapping[cellTypeAsString]);
           setCellColor(PlaceableColorMapping[cellTypeAsString]);
         }
       }}
-      className={`cell ${cellColor} ${
-        cellId === sourceCellId ? PlaceableColorMapping.Source : ""
-      } ${cellId === targetCellId ? PlaceableColorMapping.Target : ""}`}
       onClick={() => {
         if (JSON.stringify(targetCellId) === JSON.stringify(cellId)) {
+          graph.setTargetCellId(null);
           setTargetCellId(null);
         }
         if (JSON.stringify(sourceCellId) === JSON.stringify(cellId)) {
+          graph.setSourceCellId(null);
           setSourceCellId(null);
         }
         if (
           !currentCellToPlace ||
           cellColor === PlaceableColorMapping[cellTypeAsString]
         ) {
-          if (cellColor == PlaceableColorMapping.Source) setSourceCellId(null);
-          if (cellColor == PlaceableColorMapping.Target) setTargetCellId(null);
+          if (cellColor == PlaceableColorMapping.Source) {
+            graph.setSourceCellId(null);
+            setSourceCellId(null);
+          }
+          if (cellColor == PlaceableColorMapping.Target) {
+            graph.setTargetCellId(null);
+            setTargetCellId(null);
+          }
           setCellColor(AllColorMapping.Unvisited);
         } else if (
           PlaceableColorMapping[cellTypeAsString] ==
@@ -91,12 +103,14 @@ function Cell({
           if (sourceCellId) return;
           setCellColor(PlaceableColorMapping[cellTypeAsString]);
           setSourceCellId(cellId);
+          graph.setSourceCellId(cellId);
         } else if (
           AllColorMapping[cellTypeAsString] == PlaceableColorMapping.Target
         ) {
           if (targetCellId) return;
           setCellColor(PlaceableColorMapping[cellTypeAsString]);
           setTargetCellId(cellId);
+          graph.setTargetCellId(cellId);
         } else {
           const newCellType =
             currentCellToPlace === cellColor
@@ -104,6 +118,10 @@ function Cell({
               : PlaceableColorMapping[cellTypeAsString];
           setCellColor(newCellType);
         }
+        graph
+          .getNode(cellId)
+          .setCellType(PlaceableColorMapping[cellTypeAsString]);
+        console.log(graph.getNode(cellId));
       }}
     />
   );

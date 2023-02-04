@@ -1,5 +1,7 @@
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "../Utility/constants";
 import { CellId } from "../Utility/types";
+import Algorithm from "../Algorithms/AlgorithmTemplate";
+import { AlgorithmType } from "../Algorithms/AlgorithmTypes";
 
 function setHeightOrWidth(
   newDimension: string,
@@ -32,6 +34,7 @@ interface SettingsBarProps {
   width: number;
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
+  setCurrentAlgorithm: (value: AlgorithmType) => void; // TODO: fix type later
 }
 
 const SettingsBar = ({
@@ -43,6 +46,7 @@ const SettingsBar = ({
   width,
   sourceCellId,
   targetCellId,
+  setCurrentAlgorithm,
 }: SettingsBarProps) => {
   return (
     <div className="flex flex-col items-center mx-2">

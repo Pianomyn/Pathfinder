@@ -1,34 +1,53 @@
-import { CellId } from "../../Utility/types";
+import { AllColorMapping, CellId } from "../../Utility/types";
 
 export default class Node {
+  cellId: CellId;
   weight: number;
-  isSource: boolean;
-  isTarget: boolean;
-  isWall: boolean;
+  isVisited: boolean;
+  cellType: AllColorMapping;
   previouslyVisitedCellId: CellId | null;
   // previously visited id
 
-  constructor() {
+  constructor(cellId: CellId) {
+    this.cellId = cellId;
     this.weight = 1;
-    this.isSource = false;
-    this.isTarget = false;
-    this.isWall = false;
+    this.isVisited = false;
+    this.cellType = AllColorMapping.Unvisited;
     this.previouslyVisitedCellId = null;
+  }
+
+  // Getters
+  getCellId() {
+    return this.cellId;
+  }
+
+  getIsVisited() {
+    return this.isVisited;
+  }
+
+  getCellY() {
+    return this.cellId.y;
+  }
+
+  getCellX() {
+    return this.cellId.x;
+  }
+
+  getCellType() {
+    return this.cellType;
   }
 
   // Setters
   setWeight(weight: number): void {
     this.weight = weight;
   }
-  setIsSource(isSource: boolean) {
-    this.isSource = isSource;
+  setCellType(newNodeType: AllColorMapping) {
+    this.cellType = newNodeType;
   }
-  setIsTarget(isTarget: boolean) {
-    this.isTarget = isTarget;
+  setIsVisited(isVisited: boolean) {
+    this.isVisited = isVisited;
   }
-  setIsWall(isWall: boolean) {
-    this.isWall = isWall;
+  setPreviouslyVisitedCellId(cellId: CellId) {
+    this.previouslyVisitedCellId = cellId;
   }
-
-  // Getters
 }
