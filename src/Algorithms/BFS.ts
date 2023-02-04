@@ -23,5 +23,17 @@ export default class BFS implements Algorithm {
     console.log(height);
   }
   returnShortestPath() {}
-  findShortestPath() {}
+  findShortestPath() {
+    if (!this.sourceCellId || !this.targetCellId) return;
+
+    var expanded = [];
+    var fringe = [];
+    const source = document.getElementById(
+      `${this.sourceCellId.height}-${this.sourceCellId.width}`
+    );
+    console.log(source);
+    fringe.push(source);
+
+    expanded.push();
+  }
 }

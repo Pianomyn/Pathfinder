@@ -1,11 +1,16 @@
 import "./Grid.css";
-import BFS from "../Algorithms/BFS";
 
 import Cell from "./Cell";
-import { CellId, PlaceableColorMapping } from "../Utility/types";
+import {
+  CellId,
+  PlaceableColorMapping,
+  AllColorMapping,
+} from "../Utility/types";
 import React, { useEffect, useState } from "react";
+import Graph from "../Algorithms/Graph/Graph";
 
 interface GridProps {
+  graph: Graph;
   height: number;
   width: number;
   currentCellToPlace: PlaceableColorMapping | null;
@@ -16,6 +21,7 @@ interface GridProps {
 }
 
 export default function Grid({
+  graph,
   height,
   width,
   currentCellToPlace,
@@ -25,12 +31,12 @@ export default function Grid({
   setTargetCellId,
 }: GridProps) {
   const [mouseDown, setMouseDown] = useState<boolean>(false);
-  //var bfs = new BFS(height, width, sourceCellId, targetCellId);
-
-  useEffect(() => {
-    setSourceCellId(null);
-    setTargetCellId(null);
-  }, [height, width]);
+  console.log(graph);
+  var cell = document.getElementById("3-2");
+  if (cell) {
+    //cell.classList.remove(AllColorMapping.Unvisited);
+    //cell.classList.add(AllColorMapping.Wall);
+  }
 
   function generateRow(width: number, h: number) {
     var cells: Cell[] = [];
@@ -38,6 +44,7 @@ export default function Grid({
       cells.push(
         <Cell
           key={`${w}-${h}`}
+          graph={graph}
           cellId={{ width: w, height: h }}
           mouseDown={mouseDown}
           currentCellToPlace={currentCellToPlace}

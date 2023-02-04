@@ -11,14 +11,19 @@ export default class Graph {
   constructor(
     height: number,
     width: number,
-    sourceCellId: CellId,
-    targetCellId: CellId
+    sourceCellId: CellId | null,
+    targetCellId: CellId | null
   ) {
     this.height = height;
     this.width = width;
     this.sourceCellId = sourceCellId;
     this.targetCellId = targetCellId;
     this.graph = this.generateGraph(height, width);
+  }
+
+  // Getters
+  getNode(height: number, width: number): Node {
+    return this.graph[height][width];
   }
 
   generateGraph(height: number, width: number): Node[][] {

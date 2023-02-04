@@ -1,17 +1,13 @@
 import "./App.css";
+import Graph from "./Algorithms/Graph/Graph";
 
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "./Utility/constants";
-import {
-  AllColorMapping,
-  MultiplePlaceableColorMapping,
-  PlaceableColorMapping,
-  CellId,
-} from "./Utility/types";
+import { PlaceableColorMapping, CellId } from "./Utility/types";
 import Grid from "./Grid/Grid";
 import PlayBar from "./MenuBar/PlayBar";
 import SettingsBar from "./MenuBar/SettingsBar";
 import ColorKeyBar from "./MenuBar/ColorKeyBar";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
   const [width, setWidth] = useState<number>(DEFAULT_WIDTH);
@@ -22,6 +18,15 @@ export default function App() {
     useState<PlaceableColorMapping | null>(null);
   const [sourceCellId, setSourceCellId] = useState<CellId | null>(null);
   const [targetCellId, setTargetCellId] = useState<CellId | null>(null);
+
+  const [canEdit, setCanEdit] = useState<boolean>(true);
+
+  var graph = new Graph(height, width, sourceCellId, targetCellId);
+
+  useEffect(() => {
+    setSourceCellId(null);
+    setTargetCellId(null);
+  }, [height, width]);
 
   return (
     <div className="font-sans">
@@ -47,6 +52,7 @@ export default function App() {
       </div>
       <div className="w-screen flex justify-center items-center">
         <Grid
+          graph={graph}
           height={height}
           width={width}
           currentCellToPlace={currentCellTypeToPlace}

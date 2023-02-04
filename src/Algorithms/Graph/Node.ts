@@ -20,6 +20,15 @@ export default class Node {
   setWeight(weight: number): void {
     this.weight = weight;
   }
+  setIsSource(isSource: boolean) {
+    this.isSource = isSource;
+  }
+  setIsTarget(isTarget: boolean) {
+    this.isTarget = isTarget;
+  }
+  setIsWall(isWall: boolean) {
+    this.isWall = isWall;
+  }
 
   // Getters
 }

@@ -6,8 +6,10 @@ import {
   PlaceableColorMapping,
 } from "../Utility/types";
 import React, { useEffect, useState } from "react";
+import Graph from "../Algorithms/Graph/Graph";
 
 type CellProps = {
+  graph: Graph;
   cellId: CellId;
   mouseDown: boolean;
   currentCellToPlace: PlaceableColorMapping | null;
@@ -20,6 +22,7 @@ type CellProps = {
 };
 
 function Cell({
+  graph,
   cellId,
   mouseDown,
   currentCellToPlace,
@@ -42,9 +45,10 @@ function Cell({
   var cellTypeAsString =
     currentCellToPlace as string as keyof typeof PlaceableColorMapping;
 
-  // Instant legacy code :/ need to refactor.
+  // Unreadable :/ need to refactor.
   return (
     <td
+      id={`${cellId.height}-${cellId.width}`}
       onMouseOver={() => {
         if (
           mouseDown &&
@@ -54,8 +58,6 @@ function Cell({
             PlaceableColorMapping[cellTypeAsString] ==
               PlaceableColorMapping.Weight)
         ) {
-          console.log(sourceCellId);
-          console.log(cellId);
           if (JSON.stringify(targetCellId) === JSON.stringify(cellId)) {
             setTargetCellId(null);
           }
