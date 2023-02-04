@@ -84,19 +84,6 @@ function Cell({
           setSourceCellId(null);
         }
         if (
-          !currentCellToPlace ||
-          cellColor === PlaceableColorMapping[cellTypeAsString]
-        ) {
-          if (cellColor == PlaceableColorMapping.Source) {
-            graph.setSourceCellId(null);
-            setSourceCellId(null);
-          }
-          if (cellColor == PlaceableColorMapping.Target) {
-            graph.setTargetCellId(null);
-            setTargetCellId(null);
-          }
-          setCellColor(AllColorMapping.Unvisited);
-        } else if (
           PlaceableColorMapping[cellTypeAsString] ==
           PlaceableColorMapping.Source
         ) {
@@ -112,8 +99,10 @@ function Cell({
           setTargetCellId(cellId);
           graph.setTargetCellId(cellId);
         } else {
+          console.log(cellTypeAsString);
+          console.log(cellColor);
           const newCellType =
-            currentCellToPlace === cellColor
+            PlaceableColorMapping[cellTypeAsString] === cellColor
               ? AllColorMapping.Unvisited
               : PlaceableColorMapping[cellTypeAsString];
           setCellColor(newCellType);

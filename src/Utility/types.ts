@@ -24,6 +24,7 @@ export const PlaceableColorMapping = {
 export enum UnplaceableColorMapping {
   Unvisited = "bg-white",
   Visited = "bg-blue-500",
+  Path = "bg-yellow-500",
 }
 
 export type AllColorMapping = PlaceableColorMapping | UnplaceableColorMapping;

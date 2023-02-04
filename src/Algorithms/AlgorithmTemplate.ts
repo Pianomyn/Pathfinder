@@ -14,6 +14,9 @@ export default abstract class Algorithm {
     this.expanded = [];
   }
 
+  setGraph(graph: Graph) {
+    this.graph = graph;
+  }
   //returnShortestPath: () => void;
   //findShortestPath: () => void;
 }
