@@ -7,9 +7,66 @@ import Node from "./Graph/Node";
 export default class BFS extends Algorithm {
   constructor(graph: Graph) {
     super(graph);
+    this.animationDelay = 3;
   }
 
-  returnShortestPath() {}
+  // Setters
+  setExpanded(expanded: Node[]) {
+    this.expanded = expanded;
+  }
+
+  async animateShortestPath() {
+    // Animate expanded cells
+    for (let node of this.expanded) {
+      //const nodeCellId = node.getCellId()
+      if (
+        node.getCellType() !== AllColorMapping.Source &&
+        node.getCellType() !== AllColorMapping.Target
+      ) {
+        this.graph.updateCellColor(node.getCellId(), AllColorMapping.Visited);
+        await new Promise((resolve) =>
+          setTimeout(resolve, this.animationDelay)
+        );
+      }
+    }
+
+    // Animate shortest path
+    console.log("REACHED");
+    const targetCellId = this.graph.getTargetCellId();
+    if (targetCellId) {
+      var currentNodeInShortestPath: Node | null =
+        this.graph.getNode(targetCellId);
+      console.log("ASDFFDSAFSF", currentNodeInShortestPath);
+      while (currentNodeInShortestPath) {
+        if (
+          currentNodeInShortestPath.getCellType() !== AllColorMapping.Source &&
+          currentNodeInShortestPath.getCellType() !== AllColorMapping.Target
+        ) {
+          console.log(
+            currentNodeInShortestPath.getCellType(),
+            AllColorMapping.Source,
+            AllColorMapping.Target
+          );
+          this.graph.updateCellColor(
+            currentNodeInShortestPath.getCellId(),
+            AllColorMapping.Path
+          );
+        }
+
+        var previouslyVisitedCellId =
+          currentNodeInShortestPath.getPreviouslyVisitedCellId();
+        console.log("PREV", previouslyVisitedCellId);
+        if (previouslyVisitedCellId) {
+          currentNodeInShortestPath = this.graph.getNode(
+            previouslyVisitedCellId
+          );
+        } else {
+          currentNodeInShortestPath = null;
+        }
+      }
+    }
+    console.log("REACHED2");
+  }
 
   insertIntoFrontier(
     frontier: Node[],
@@ -60,28 +117,28 @@ export default class BFS extends Algorithm {
       console.log("before 1");
       var neighbour = graph.getNode({ y: currentY + 1, x: currentX });
       console.log(1, neighbour);
-      neighbour.setPreviouslyVisitedCellId(currentCellId);
+      //neighbour.setPreviouslyVisitedCellId(currentCellId);
       neighbours.push(neighbour);
       console.log("1");
     }
     if (currentY - 1 >= 0) {
       var neighbour = graph.getNode({ y: currentY - 1, x: currentX });
       console.log(2, neighbour);
-      neighbour.setPreviouslyVisitedCellId(currentCellId);
+      //neighbour.setPreviouslyVisitedCellId(currentCellId);
       neighbours.push(neighbour);
       console.log("2");
     }
     if (currentX + 1 < graphWidth) {
       var neighbour = graph.getNode({ y: currentY, x: currentX + 1 });
       console.log(3, neighbour);
-      neighbour.setPreviouslyVisitedCellId(currentCellId);
+      //neighbour.setPreviouslyVisitedCellId(currentCellId);
       neighbours.push(neighbour);
       console.log("3");
     }
     if (currentX - 1 >= 0) {
       var neighbour = graph.getNode({ y: currentY, x: currentX - 1 });
       console.log(4, neighbour);
-      neighbour.setPreviouslyVisitedCellId(currentCellId);
+      //neighbour.setPreviouslyVisitedCellId(currentCellId);
       neighbours.push(neighbour);
       console.log("4");
     }
@@ -144,6 +201,8 @@ export default class BFS extends Algorithm {
           !n.getIsVisited() &&
           !this.checkIfInFrontier(frontierMap, n)
         ) {
+          // @ts-ignore Saying currentNode might be null. Already checked if null
+          n.setPreviouslyVisitedCellId(currentNode.getCellId());
           this.insertIntoFrontier(frontier, frontierMap, n);
         }
       });
@@ -151,6 +210,7 @@ export default class BFS extends Algorithm {
       //var currentNodeHeight = currentNode.height
     }
     console.log(expanded);
+    this.setExpanded(expanded);
     /*
     const source = document.getElementById(
       `${this.sourceCellId.height}-${this.sourceCellId.width}`

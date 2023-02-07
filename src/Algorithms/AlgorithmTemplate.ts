@@ -5,6 +5,7 @@ import Node from "./Graph/Node";
 export default abstract class Algorithm {
   graph: Graph;
   expanded: Node[];
+  animationDelay: number;
   // Previously visited
   // Weight
   // Heuristic
@@ -12,11 +13,12 @@ export default abstract class Algorithm {
   constructor(graph: Graph) {
     this.graph = graph;
     this.expanded = [];
+    this.animationDelay = 3;
   }
 
   setGraph(graph: Graph) {
     this.graph = graph;
   }
   //returnShortestPath: () => void;
-  //findShortestPath: () => void;
+  abstract findShortestPath(): void;
 }

@@ -20,11 +20,12 @@ const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
             setCanEdit(false);
             currentAlgorithm.setGraph(graph);
             currentAlgorithm.findShortestPath();
+            currentAlgorithm.animateShortestPath();
             //var bfs = new BFS(graph);
             //var bfs = new currentAlgorithm(graph)
             //console.log(bfs.graph);
             //bfs.findShortestPath();
-            BFS;
+            setCanEdit(true);
           }}
         >
           Start

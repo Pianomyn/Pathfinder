@@ -37,6 +37,10 @@ export default class Node {
     return this.cellType;
   }
 
+  getPreviouslyVisitedCellId() {
+    return this.previouslyVisitedCellId;
+  }
+
   // Setters
   setWeight(weight: number): void {
     this.weight = weight;

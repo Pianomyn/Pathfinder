@@ -1,4 +1,5 @@
-import { CellId } from "../../Utility/types";
+import { AllColorMapping, CellId } from "../../Utility/types";
+import { VISITABLE_CELL_TYPES } from "../../Utility/constants";
 import Node from "./Node";
 
 export default class Graph {
@@ -43,6 +44,25 @@ export default class Graph {
     const { y, x } = cellId;
     //console.log("X AND Y", y, x);
     return this.graph[y][x];
+  }
+
+  getCell(cellId: CellId) {
+    // Get HTML cell
+    const cellIdString = `${cellId.y}-${cellId.x}`;
+    return document.getElementById(cellIdString);
+  }
+
+  updateCellColor(cellId: CellId, newColor: AllColorMapping) {
+    var cell = this.getCell(cellId);
+    if (cell) {
+      for (let element of cell.classList) {
+        // @ts-ignore TODO: Fix typecasting
+        if (VISITABLE_CELL_TYPES.includes(element)) {
+          cell.classList.remove(element);
+        }
+      }
+      cell.classList.add(newColor);
+    }
   }
 
   // Setters

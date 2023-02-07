@@ -39,7 +39,7 @@ export default function Grid({
         <Cell
           key={`${x}-${y}`}
           graph={graph}
-          cellId={{ x: x, y: y }}
+          cellId={{ y: y, x: x }}
           mouseDown={mouseDown}
           currentCellToPlace={currentCellToPlace}
           sourceCellId={sourceCellId}
