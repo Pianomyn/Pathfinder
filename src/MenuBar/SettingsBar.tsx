@@ -1,3 +1,4 @@
+import BFS from "../Algorithms/BFS";
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "../Utility/constants";
 import { CellId } from "../Utility/types";
 import Algorithm from "../Algorithms/AlgorithmTemplate";
@@ -52,7 +53,13 @@ const SettingsBar = ({
     <div className="flex flex-col items-center mx-2">
       <div className="flex items-center justify-center ">
         <select className="p-2 mx-0.5 w-4/12 text-center border-solid border rounded">
-          <option>BFS</option>
+          <option
+            onClick={() => {
+              setCurrentAlgorithm(BFS);
+            }}
+          >
+            BFS
+          </option>
           <option>DFS</option>
           {/*
           <option>IDDFS</option>

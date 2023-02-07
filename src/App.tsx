@@ -53,7 +53,7 @@ export default function App() {
       <div id="options-bar-wrapper" className="w-screen flex justify-center">
         <div
           id="options-bar"
-          className="flex w-screen items-start justify-evenly my-3"
+          className="flex w-screen items-start justify-center my-3"
         >
           <SettingsBar
             setHeight={setHeight}

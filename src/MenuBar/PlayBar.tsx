@@ -30,6 +30,12 @@ const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
         >
           Start
         </button>
+        <button
+          className="p-2 mx-0.5 border border-solid rounded"
+          onClick={() => window.location.reload()}
+        >
+          Reset
+        </button>
       </div>
     </div>
   );
