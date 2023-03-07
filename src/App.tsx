@@ -22,7 +22,14 @@ export default function App() {
   const [sourceCellId, setSourceCellId] = useState<CellId | null>(null);
   const [targetCellId, setTargetCellId] = useState<CellId | null>(null);
   const [graph, setGraph] = useState(
-    new Graph(height, width, sourceCellId, targetCellId)
+    new Graph(
+      height,
+      width,
+      sourceCellId,
+      targetCellId,
+      setSourceCellId,
+      setTargetCellId
+    )
   );
 
   //graph = new Graph(height, width, sourceCellId, targetCellId);
@@ -37,7 +44,9 @@ export default function App() {
     setSourceCellId(null);
     setTargetCellId(null);
     //graph = new Graph(height, width, null, null);
-    setGraph(new Graph(height, width, null, null));
+    setGraph(
+      new Graph(height, width, null, null, setSourceCellId, setTargetCellId)
+    );
   }, [height, width]);
 
   useEffect(() => {

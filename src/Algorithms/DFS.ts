@@ -86,7 +86,7 @@ export default class DFS extends Algorithm {
         }
       }
     }
-    console.log("REACHED2");
+    this.setExpanded([]);
   }
 
   insertIntoFrontier(

@@ -4,6 +4,7 @@ import { AlgorithmType } from "../Algorithms/AlgorithmTypes";
 import BFS from "../Algorithms/BFS";
 import DFS from "../Algorithms/DFS";
 import Graph from "../Algorithms/Graph/Graph";
+import { ALL_CELL_TYPES } from "../Utility/constants";
 
 interface PlayBarProps {
   graph: Graph;
@@ -41,7 +42,7 @@ const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
         </button>
         <button
           className="p-2 mx-0.5 border border-solid rounded"
-          onClick={() => window.location.reload()}
+          onClick={() => graph.clearGraph(ALL_CELL_TYPES)}
         >
           Reset
         </button>

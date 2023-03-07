@@ -1,5 +1,14 @@
-import { AllColorMapping, CellId } from "../../Utility/types";
-import { VISITABLE_CELL_TYPES } from "../../Utility/constants";
+import {
+  AllColorMapping,
+  CellId,
+  SinglePlaceableColorMapping,
+} from "../../Utility/types";
+import {
+  ALL_CELL_TYPES,
+  VISITABLE_CELL_TYPES,
+  SOURCE_AND_TARGET,
+  WALLS_AND_WEIGHTS,
+} from "../../Utility/constants";
 import Node from "./Node";
 
 export default class Graph {
@@ -8,18 +17,24 @@ export default class Graph {
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
   graph: Node[][];
+  setSourceCellId: (value: CellId | null) => void;
+  setTargetCellId: (value: CellId | null) => void;
 
   constructor(
     height: number,
     width: number,
     sourceCellId: CellId | null,
-    targetCellId: CellId | null
+    targetCellId: CellId | null,
+    setSourceCellId: (value: CellId | null) => void,
+    setTargetCellId: (value: CellId | null) => void
   ) {
     this.height = height;
     this.width = width;
     this.sourceCellId = sourceCellId;
     this.targetCellId = targetCellId;
     this.graph = this.generateGraph(height, width);
+    this.setSourceCellId = setSourceCellId;
+    this.setTargetCellId = setTargetCellId;
   }
 
   // Getters
@@ -57,7 +72,7 @@ export default class Graph {
     if (cell) {
       for (let element of cell.classList) {
         // @ts-ignore TODO: Fix typecasting
-        if (VISITABLE_CELL_TYPES.includes(element)) {
+        if (ALL_CELL_TYPES.includes(element)) {
           cell.classList.remove(element);
         }
       }
@@ -66,12 +81,41 @@ export default class Graph {
   }
 
   // Setters
-  setSourceCellId(cellId: CellId | null) {
+  updateSourceCellId(cellId: CellId | null) {
     this.sourceCellId = cellId;
   }
 
-  setTargetCellId(cellId: CellId | null) {
+  updateTargetCellId(cellId: CellId | null) {
     this.targetCellId = cellId;
+  }
+
+  clearGraph(cellTypesToClear: AllColorMapping[]) {
+    for (var r = 0; r < this.height; r++) {
+      for (var c = 0; c < this.width; c++) {
+        var currentId = { y: r, x: c };
+        var currentNode = this.getNode(currentId);
+        if (cellTypesToClear.includes(currentNode.getCellType())) {
+          if (currentNode.getCellType() == AllColorMapping.Source) {
+            this.setSourceCellId(null);
+            this.updateSourceCellId(null);
+          }
+          if (currentNode.getCellType() == AllColorMapping.Target) {
+            this.setTargetCellId(null);
+            this.updateTargetCellId(null);
+          }
+
+          this.updateCellColor(
+            currentNode.getCellId(),
+            AllColorMapping.Unvisited
+          );
+          currentNode.setCellType(AllColorMapping.Unvisited);
+          currentNode.setIsVisited(false);
+          currentNode.setPreviouslyVisitedCellId(null);
+        }
+
+        //var cellTypesToClear = [...SOURCE_AND_TARGET, ...WALLS_AND_WEIGHTS];
+      }
+    }
   }
 
   generateGraph(height: number, width: number): Node[][] {

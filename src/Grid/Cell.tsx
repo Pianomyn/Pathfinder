@@ -62,9 +62,11 @@ function Cell({
               PlaceableColorMapping.Weight)
         ) {
           if (JSON.stringify(targetCellId) === JSON.stringify(cellId)) {
+            graph.updateTargetCellId(null);
             setTargetCellId(null);
           }
           if (JSON.stringify(sourceCellId) === JSON.stringify(cellId)) {
+            graph.updateSourceCellId(null);
             setSourceCellId(null);
           }
 
@@ -76,11 +78,11 @@ function Cell({
       }}
       onClick={() => {
         if (JSON.stringify(targetCellId) === JSON.stringify(cellId)) {
-          graph.setTargetCellId(null);
+          graph.updateTargetCellId(null);
           setTargetCellId(null);
         }
         if (JSON.stringify(sourceCellId) === JSON.stringify(cellId)) {
-          graph.setSourceCellId(null);
+          graph.updateSourceCellId(null);
           setSourceCellId(null);
         }
         if (
@@ -90,14 +92,14 @@ function Cell({
           if (sourceCellId) return;
           setCellColor(PlaceableColorMapping[cellTypeAsString]);
           setSourceCellId(cellId);
-          graph.setSourceCellId(cellId);
+          graph.updateSourceCellId(cellId);
         } else if (
           AllColorMapping[cellTypeAsString] == PlaceableColorMapping.Target
         ) {
           if (targetCellId) return;
           setCellColor(PlaceableColorMapping[cellTypeAsString]);
           setTargetCellId(cellId);
-          graph.setTargetCellId(cellId);
+          graph.updateTargetCellId(cellId);
         } else {
           console.log(cellTypeAsString);
           console.log(cellColor);

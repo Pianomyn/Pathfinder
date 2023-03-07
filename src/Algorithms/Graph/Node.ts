@@ -51,7 +51,7 @@ export default class Node {
   setIsVisited(isVisited: boolean) {
     this.isVisited = isVisited;
   }
-  setPreviouslyVisitedCellId(cellId: CellId) {
+  setPreviouslyVisitedCellId(cellId: CellId | null) {
     this.previouslyVisitedCellId = cellId;
   }
 }
