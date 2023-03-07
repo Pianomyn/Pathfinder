@@ -175,7 +175,7 @@ export default class BFS extends Algorithm {
       currentNode?.setIsVisited(true);
       if (!currentNode) break; // Shouldn't need this but lang server wasn't happy
       // Insert into expanded
-      expanded.push(currentNode);
+      expanded.unshift(currentNode);
       // Check if popped node is target
       if (currentNode.getCellType() === AllColorMapping.Target) {
         break;
