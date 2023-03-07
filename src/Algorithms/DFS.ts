@@ -78,7 +78,7 @@ export default class BFS extends Algorithm {
      * the node into a Map to speed up ifExists checks.
      * */
     const cellId = node.getCellId();
-    frontier.push(node);
+    frontier.unshift(node);
     frontierMap.set(cellId, node); // Check if exists first?
   }
 
