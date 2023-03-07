@@ -21,4 +21,5 @@ export default abstract class Algorithm {
   }
   //returnShortestPath: () => void;
   abstract findPath(): void;
+  abstract animatePath(): void;
 }
