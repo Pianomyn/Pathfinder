@@ -65,6 +65,7 @@ export default function App() {
             sourceCellId={sourceCellId}
             targetCellId={targetCellId}
             setCurrentAlgorithm={setCurrentAlgorithm}
+            graph={graph}
           />
           <PlayBar
             graph={graph}

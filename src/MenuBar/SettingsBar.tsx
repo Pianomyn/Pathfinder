@@ -1,8 +1,10 @@
 import BFS from "../Algorithms/BFS";
+import DFS from "../Algorithms/DFS";
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "../Utility/constants";
 import { CellId } from "../Utility/types";
 import Algorithm from "../Algorithms/AlgorithmTemplate";
 import { AlgorithmType } from "../Algorithms/AlgorithmTypes";
+import Graph from "../Algorithms/Graph/Graph";
 
 function setHeightOrWidth(
   newDimension: string,
@@ -36,6 +38,7 @@ interface SettingsBarProps {
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
   setCurrentAlgorithm: (value: AlgorithmType) => void; // TODO: fix type later
+  graph: Graph;
 }
 
 const SettingsBar = ({
@@ -48,6 +51,7 @@ const SettingsBar = ({
   sourceCellId,
   targetCellId,
   setCurrentAlgorithm,
+  graph,
 }: SettingsBarProps) => {
   return (
     <div className="flex flex-col items-center mx-2">
@@ -55,12 +59,14 @@ const SettingsBar = ({
         <select className="p-2 mx-0.5 w-4/12 text-center border-solid border rounded">
           <option
             onClick={() => {
-              setCurrentAlgorithm(BFS);
+              setCurrentAlgorithm(new BFS(graph));
             }}
           >
             BFS
           </option>
-          <option>DFS</option>
+          <option onClick={() => setCurrentAlgorithm(new DFS(graph))}>
+            DFS
+          </option>
           {/*
           <option>IDDFS</option>
           <option>A*</option>
