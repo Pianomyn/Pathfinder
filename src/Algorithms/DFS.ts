@@ -4,7 +4,28 @@ import { AllColorMapping, CellId } from "../Utility/types";
 import Graph from "./Graph/Graph";
 import Node from "./Graph/Node";
 
-export default class BFS extends Algorithm {
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array: Array<Node>) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
+export default class DFS extends Algorithm {
   constructor(graph: Graph) {
     super(graph);
     this.animationDelay = 3;
@@ -15,7 +36,7 @@ export default class BFS extends Algorithm {
     this.expanded = expanded;
   }
 
-  async animateShortestPath() {
+  async animatePath() {
     // Animate expanded cells
     for (let node of this.expanded) {
       //const nodeCellId = node.getCellId()
@@ -145,7 +166,7 @@ export default class BFS extends Algorithm {
     return neighbours;
   }
 
-  findShortestPath() {
+  findPath() {
     var sourceCellId = this.graph.getSourceCellId();
     var targetCellId = this.graph.getTargetCellId();
     var graphHeight = this.graph.getGraphHeight();
@@ -175,7 +196,7 @@ export default class BFS extends Algorithm {
       currentNode?.setIsVisited(true);
       if (!currentNode) break; // Shouldn't need this but lang server wasn't happy
       // Insert into expanded
-      expanded.unshift(currentNode);
+      expanded.push(currentNode);
       // Check if popped node is target
       if (currentNode.getCellType() === AllColorMapping.Target) {
         break;
@@ -187,12 +208,14 @@ export default class BFS extends Algorithm {
       var currentY = currentNode.getCellY();
       var currentX = currentNode.getCellX();
 
-      var neighbourNodes = this.getNeighbours(
-        this.graph,
-        currentY,
-        currentX,
-        graphHeight,
-        graphWidth
+      var neighbourNodes = shuffle(
+        this.getNeighbours(
+          this.graph,
+          currentY,
+          currentX,
+          graphHeight,
+          graphWidth
+        )
       );
 
       neighbourNodes.forEach((n) => {

@@ -20,5 +20,5 @@ export default abstract class Algorithm {
     this.graph = graph;
   }
   //returnShortestPath: () => void;
-  abstract findShortestPath(): void;
+  abstract findPath(): void;
 }

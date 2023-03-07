@@ -1,2 +1,3 @@
-import BFS from "./BFS";
-export type AlgorithmType = BFS;
+import Algorithm from "./AlgorithmTemplate";
+
+export type AlgorithmType = Algorithm;

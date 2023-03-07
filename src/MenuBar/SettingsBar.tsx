@@ -53,20 +53,29 @@ const SettingsBar = ({
   setCurrentAlgorithm,
   graph,
 }: SettingsBarProps) => {
+  var bfs = new BFS(graph);
+  var dfs = new DFS(graph);
+
+  type algorithmMappingType = { [key: string]: AlgorithmType };
+  var algorithmMapping: algorithmMappingType = {
+    BFS: bfs,
+    DFS: dfs,
+  };
+
   return (
     <div className="flex flex-col items-center mx-2">
       <div className="flex items-center justify-center ">
-        <select className="p-2 mx-0.5 w-4/12 text-center border-solid border rounded">
-          <option
-            onClick={() => {
-              setCurrentAlgorithm(new BFS(graph));
-            }}
-          >
-            BFS
-          </option>
-          <option onClick={() => setCurrentAlgorithm(new DFS(graph))}>
-            DFS
-          </option>
+        <select
+          className="p-2 mx-0.5 w-4/12 text-center border-solid border rounded"
+          onChange={(event) => {
+            console.log("reached select onchange");
+            console.log(event.target.value);
+            var algorithmName = event.target.value;
+            setCurrentAlgorithm(algorithmMapping[algorithmName]);
+          }}
+        >
+          <option value="BFS">BFS</option>
+          <option value="DFS">DFS</option>
           {/*
           <option>IDDFS</option>
           <option>A*</option>

@@ -15,7 +15,7 @@ export default class BFS extends Algorithm {
     this.expanded = expanded;
   }
 
-  async animateShortestPath() {
+  async animatePath() {
     // Animate expanded cells
     for (let node of this.expanded) {
       //const nodeCellId = node.getCellId()
@@ -31,22 +31,15 @@ export default class BFS extends Algorithm {
     }
 
     // Animate shortest path
-    console.log("REACHED");
     const targetCellId = this.graph.getTargetCellId();
     if (targetCellId) {
       var currentNodeInShortestPath: Node | null =
         this.graph.getNode(targetCellId);
-      console.log("ASDFFDSAFSF", currentNodeInShortestPath);
       while (currentNodeInShortestPath) {
         if (
           currentNodeInShortestPath.getCellType() !== AllColorMapping.Source &&
           currentNodeInShortestPath.getCellType() !== AllColorMapping.Target
         ) {
-          console.log(
-            currentNodeInShortestPath.getCellType(),
-            AllColorMapping.Source,
-            AllColorMapping.Target
-          );
           this.graph.updateCellColor(
             currentNodeInShortestPath.getCellId(),
             AllColorMapping.Path
@@ -55,7 +48,6 @@ export default class BFS extends Algorithm {
 
         var previouslyVisitedCellId =
           currentNodeInShortestPath.getPreviouslyVisitedCellId();
-        console.log("PREV", previouslyVisitedCellId);
         if (previouslyVisitedCellId) {
           currentNodeInShortestPath = this.graph.getNode(
             previouslyVisitedCellId
@@ -65,7 +57,6 @@ export default class BFS extends Algorithm {
         }
       }
     }
-    console.log("REACHED2");
   }
 
   insertIntoFrontier(
@@ -109,50 +100,38 @@ export default class BFS extends Algorithm {
   ): Node[] {
     var neighbours: Node[] = [];
     var currentCellId = { y: currentY, x: currentX };
-    console.log("INSIDE GETNEIGHBOURS", currentCellId);
     // Bit ugly, and repetitive. Could refactor.
 
     if (currentY + 1 < graphHeight) {
-      console.log("HEIGHT", graphHeight);
-      console.log("before 1");
       var neighbour = graph.getNode({ y: currentY + 1, x: currentX });
-      console.log(1, neighbour);
       //neighbour.setPreviouslyVisitedCellId(currentCellId);
       neighbours.push(neighbour);
-      console.log("1");
     }
     if (currentY - 1 >= 0) {
       var neighbour = graph.getNode({ y: currentY - 1, x: currentX });
-      console.log(2, neighbour);
       //neighbour.setPreviouslyVisitedCellId(currentCellId);
       neighbours.push(neighbour);
-      console.log("2");
     }
     if (currentX + 1 < graphWidth) {
       var neighbour = graph.getNode({ y: currentY, x: currentX + 1 });
-      console.log(3, neighbour);
       //neighbour.setPreviouslyVisitedCellId(currentCellId);
       neighbours.push(neighbour);
-      console.log("3");
     }
     if (currentX - 1 >= 0) {
       var neighbour = graph.getNode({ y: currentY, x: currentX - 1 });
-      console.log(4, neighbour);
       //neighbour.setPreviouslyVisitedCellId(currentCellId);
       neighbours.push(neighbour);
-      console.log("4");
     }
     return neighbours;
   }
 
-  findShortestPath() {
+  findPath() {
     var sourceCellId = this.graph.getSourceCellId();
     var targetCellId = this.graph.getTargetCellId();
     var graphHeight = this.graph.getGraphHeight();
     var graphWidth = this.graph.getGraphWidth();
 
     if (!sourceCellId || !targetCellId) {
-      console.log("SOURCE TARGET", sourceCellId, targetCellId);
       window.alert(
         "Please make sure both a source and target cell have been placed"
       );
@@ -209,14 +188,11 @@ export default class BFS extends Algorithm {
 
       //var currentNodeHeight = currentNode.height
     }
-    console.log(expanded);
     this.setExpanded(expanded);
     /*
     const source = document.getElementById(
       `${this.sourceCellId.height}-${this.sourceCellId.width}`
     );
-    console.log(source);
-    fringe.push(source);
   var cell = document.getElementById("3-2");
   if (cell) {
     //cell.classList.remove(AllColorMapping.Unvisited);
