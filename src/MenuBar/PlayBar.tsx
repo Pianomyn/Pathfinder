@@ -17,7 +17,7 @@ const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
     <div className="flex flex-col items-center mx-2">
       <div>
         <button
-          className="p-2 mx-0.5 border border-solid rounded"
+          className="p-2 mx-0.5 border border-solid "
           onClick={() => {
             console.log(currentAlgorithm);
             setCanEdit(false);
@@ -41,7 +41,7 @@ const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
           Start
         </button>
         <button
-          className="p-2 mx-0.5 border border-solid rounded"
+          className="p-2 mx-0.5 border border-solid "
           onClick={() => graph.clearGraph(ALL_CELL_TYPES)}
         >
           Reset

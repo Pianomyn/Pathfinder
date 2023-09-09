@@ -24,7 +24,7 @@ const ColorKey = ({
 }: ColorKeyProps) => {
   return (
     <div
-      className={`hover:cursor-pointer border border-solid rounded flex mx-0.5 p-2 ${
+      className={`hover:cursor-pointer border border-solid  flex mx-0.5 p-2 ${
         index === currentlySelectedIndex ? "bg-blue-300" : ""
       }`}
       onClick={() => {
@@ -38,7 +38,7 @@ const ColorKey = ({
         }
       }}
     >
-      <div className={`border border-solid rounded w-6 h-6 ${color}`}></div>
+      <div className={`border border-solid  w-6 h-6 ${color}`}></div>
       <p>&nbsp;{name}</p>
     </div>
   );

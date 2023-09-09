@@ -1,3 +1,6 @@
+/*
+ * This component renders the Algorithm selection dropdown, the height input and the width input.
+ */
 import BFS from "../Algorithms/BFS";
 import DFS from "../Algorithms/DFS";
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "../Utility/constants";
@@ -66,7 +69,7 @@ const SettingsBar = ({
     <div className="flex flex-col items-center mx-2">
       <div className="flex items-center justify-center ">
         <select
-          className="p-2 mx-0.5 w-4/12 text-center border-solid border rounded"
+          className="p-2 mx-0.5 w-4/12 text-center border-solid border"
           onChange={(event) => {
             console.log("reached select onchange");
             console.log(event.target.value);
@@ -74,16 +77,15 @@ const SettingsBar = ({
             setCurrentAlgorithm(algorithmMapping[algorithmName]);
           }}
         >
+          <option disabled>---- Unweighted ----</option>
           <option value="BFS">BFS</option>
           <option value="DFS">DFS</option>
-          {/*
-          <option>IDDFS</option>
+          <option disabled>---- Weighted ----</option>
+          <option>Djikstra's Algorithm</option>
           <option>A*</option>
-          <option>Greedy</option>
-          */}
         </select>
         <input
-          className="p-2 mx-0.5 w-4/12 border-solid border rounded"
+          className="p-2 mx-0.5 w-4/12 border-solid border "
           type="text"
           placeholder={`Height (${DEFAULT_HEIGHT})`}
           onChange={(e) => {
@@ -96,7 +98,7 @@ const SettingsBar = ({
           }}
         ></input>
         <input
-          className="p-2 mx-0.5 w-4/12 border-solid border rounded"
+          className="p-2 mx-0.5 w-4/12 border-solid border "
           type="text"
           placeholder={`Width (${DEFAULT_WIDTH})`}
           onChange={(e) => {
