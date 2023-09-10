@@ -3,17 +3,16 @@ import "./Grid.css";
 import Cell from "./Cell";
 import {
   CellId,
-  PlaceableColorMapping,
-  AllColorMapping,
 } from "../Utility/types";
 import React, { useEffect, useState } from "react";
 import Graph from "../Algorithms/Graph/Graph";
+import { ALL_COLOR_MAPPINGS, PLACEABLE_COLOR_MAPPINGS } from "../Utility/constants";
 
 interface GridProps {
   graph: Graph;
   height: number;
   width: number;
-  currentCellToPlace: PlaceableColorMapping | null;
+  currentCellToPlace: typeof PLACEABLE_COLOR_MAPPINGS | null;
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
   setSourceCellId: (value: CellId | null) => void;

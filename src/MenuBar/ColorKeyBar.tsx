@@ -1,17 +1,16 @@
 import {
-  PlaceableColorMapping,
-  AllColorMapping,
-  MultiplePlaceableColorMapping,
+  PLACEABLE_COLOR_MAPPINGS_TYPE,
 } from "../Utility/types";
 import { useState } from "react";
+import { PLACEABLE_COLOR_MAPPINGS } from "../Utility/constants";
 
 interface ColorKeyProps {
-  name: PlaceableColorMapping;
+  name: PLACEABLE_COLOR_MAPPINGS_TYPE;
   color: string;
   index: number;
   currentlySelectedIndex: number;
   setCurrentlySelectedIndex: (value: number) => void;
-  setCurrentCellToPlace: (value: PlaceableColorMapping | null) => void;
+  setCurrentCellToPlace: (value: PLACEABLE_COLOR_MAPPINGS_TYPE | null) => void;
 }
 
 const ColorKey = ({
@@ -46,16 +45,16 @@ const ColorKey = ({
 const ColorKeyBar = ({
   setCurrentCellTypeToPlace,
 }: {
-  setCurrentCellTypeToPlace: (value: PlaceableColorMapping | null) => void;
+  setCurrentCellTypeToPlace: (value: PLACEABLE_COLOR_MAPPINGS_TYPE | null) => void;
 }) => {
   const [currentlySelectedIndex, setCurrentlySelectedIndex] = useState(-1);
   return (
     <div id="color-key-bar" className="flex items-center mx-2">
-      {Object.entries(PlaceableColorMapping).map(([key, val], index) => {
+      {Object.entries(PLACEABLE_COLOR_MAPPINGS).map(([key, val], index) => {
         return (
           <ColorKey
             key={`color-key-${key}-${val}`}
-            name={key as PlaceableColorMapping}
+            name={key as PLACEABLE_COLOR_MAPPINGS_TYPE}
             color={val}
             index={index}
             currentlySelectedIndex={currentlySelectedIndex}

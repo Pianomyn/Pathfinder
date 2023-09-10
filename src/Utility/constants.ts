@@ -1,30 +1,47 @@
-import { AllColorMapping } from "./types";
-
 export const DEFAULT_HEIGHT = 20;
 export const DEFAULT_WIDTH = 50;
 
-export const ALL_CELL_TYPES: AllColorMapping[] = [
-  AllColorMapping.Source,
-  AllColorMapping.Target,
-  AllColorMapping.Weight,
-  AllColorMapping.Wall,
-  AllColorMapping.Visited,
-  AllColorMapping.Unvisited,
-  AllColorMapping.Path,
-];
+/*
+  const Source = "bg-green-500"
+  const Target = "bg-red-500"
+  const Weight = "bg-gray-500"
+  const Wall = "bg-zinc-800"
+  const Unvisited = "bg-white"
+  const Visited = "bg-blue-500"
+  const Path = "bg-yellow-500"
+  */
+export const ALL_COLOR_MAPPINGS = {
+  Source: "bg-green-500",
+  Target: "bg-red-500",
+  Weight: "bg-gray-500",
+  Wall: "bg-zinc-800",
+  Unvisited: "bg-white",
+  Visited: "bg-blue-500",
+  Path: "bg-yellow-500",
+}
 
-export const VISITABLE_CELL_TYPES: AllColorMapping[] = [
-  AllColorMapping.Weight,
-  AllColorMapping.Target,
-  AllColorMapping.Unvisited,
-];
+export const PLACEABLE_COLOR_MAPPINGS = {
+  Source: ALL_COLOR_MAPPINGS.Source,
+  Target: ALL_COLOR_MAPPINGS.Target,
+  Weight: ALL_COLOR_MAPPINGS.Weight,
+  Wall: ALL_COLOR_MAPPINGS.Wall,
+};
 
-export const SOURCE_AND_TARGET: AllColorMapping[] = [
-  AllColorMapping.Source,
-  AllColorMapping.Target,
-];
+export const UNPLACEABLE_COLOR_MAPPINGS = {
+  Unvisited: ALL_COLOR_MAPPINGS.Unvisited,
+  Visited: ALL_COLOR_MAPPINGS.Visited,
+  Path: ALL_COLOR_MAPPINGS.Path,
+};
 
-export const WALLS_AND_WEIGHTS: AllColorMapping[] = [
-  AllColorMapping.Wall,
-  AllColorMapping.Weight,
-];
+export const VISITABLE_COLOR_MAPPINGS = {
+  Weight: ALL_COLOR_MAPPINGS.Weight,
+  Unvisited: ALL_COLOR_MAPPINGS.Unvisited,
+  Target: ALL_COLOR_MAPPINGS.Target,
+};
+
+/*
+export const ObstacleColorMappings = {
+  Weight: ALL_COLOR_MAPPINGS.Visited,
+  Wall: ALL_COLOR_MAPPINGS.Visited,
+};
+*/

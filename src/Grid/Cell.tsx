@@ -1,18 +1,18 @@
 import "./Cell.css";
 
 import {
+    ALL_COLOR_MAPPINGS_TYPE,
   CellId,
-  AllColorMapping,
-  PlaceableColorMapping,
 } from "../Utility/types";
 import React, { useEffect, useState } from "react";
 import Graph from "../Algorithms/Graph/Graph";
+import { ALL_COLOR_MAPPINGS, PLACEABLE_COLOR_MAPPINGS } from "../Utility/constants";
 
 type CellProps = {
   graph: Graph;
   cellId: CellId;
   mouseDown: boolean;
-  currentCellToPlace: PlaceableColorMapping | null;
+  currentCellToPlace: typeof PLACEABLE_COLOR_MAPPINGS | null;
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
   setSourceCellId: (value: CellId | null) => void;
@@ -37,33 +37,33 @@ function Cell({
   height,
   width,
 }: CellProps) {
-  const [cellColor, setCellColor] = useState<AllColorMapping>(
-    AllColorMapping.Unvisited
+  const [cellColor, setCellColor] = useState<ALL_COLOR_MAPPINGS_TYPE>(
+    ALL_COLOR_MAPPINGS.Unvisited
   );
   useEffect(() => {
-    setCellColor(AllColorMapping.Unvisited);
+    setCellColor(ALL_COLOR_MAPPINGS.Unvisited);
     setSourceCellId(null);
     setTargetCellId(null);
   }, [height, width]);
 
   var cellTypeAsString =
-    currentCellToPlace as string as keyof typeof PlaceableColorMapping;
+    currentCellToPlace as string as keyof typeof PLACEABLE_COLOR_MAPPINGS;
 
   // Unreadable :/ need to refactor.
   return (
     <td
       id={JSON.stringify(cellId)}
       className={`cell ${cellColor} ${
-        cellId === sourceCellId ? PlaceableColorMapping.Source : ""
-      } ${cellId === targetCellId ? PlaceableColorMapping.Target : ""}`}
+        cellId === sourceCellId ? PLACEABLE_COLOR_MAPPINGS.Source : ""
+      } ${cellId === targetCellId ? PLACEABLE_COLOR_MAPPINGS.Target : ""}`}
       onMouseOver={() => {
         if (
           mouseDown &&
           currentCellToPlace &&
-          (PlaceableColorMapping[cellTypeAsString] ==
-            PlaceableColorMapping.Wall ||
-            PlaceableColorMapping[cellTypeAsString] ==
-              PlaceableColorMapping.Weight)
+          (PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
+            PLACEABLE_COLOR_MAPPINGS.Wall ||
+            PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
+              PLACEABLE_COLOR_MAPPINGS.Weight)
         ) {
           if (JSON.stringify(targetCellId) === JSON.stringify(cellId)) {
             graph.updateTargetCellId(null);
@@ -76,13 +76,11 @@ function Cell({
 
           graph
             .getNode(cellId)
-            .setCellType(PlaceableColorMapping[cellTypeAsString]);
-          setCellColor(PlaceableColorMapping[cellTypeAsString]);
+            .setCellType(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
+          setCellColor(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
         }
       }}
       onClick={() => {
-        console.log("reached")
-        console.log(targetCellId, sourceCellId, cellId)
         /*
         if (JSON.stringify(targetCellId) === JSON.stringify(cellId)) {
           graph.updateTargetCellId(null);
@@ -97,28 +95,28 @@ function Cell({
         */
 
         if (
-          PlaceableColorMapping[cellTypeAsString] ==
-          PlaceableColorMapping.Source
+          PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
+          PLACEABLE_COLOR_MAPPINGS.Source
         ) {
-          setCellColor(PlaceableColorMapping[cellTypeAsString]);
+          setCellColor(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
           setSourceCellId(cellId);
           graph.updateSourceCellId(cellId);
         } else if (
-          AllColorMapping[cellTypeAsString] == PlaceableColorMapping.Target
+          ALL_COLOR_MAPPINGS[cellTypeAsString] == PLACEABLE_COLOR_MAPPINGS.Target
         ) {
-          setCellColor(PlaceableColorMapping[cellTypeAsString]);
+          setCellColor(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
           setTargetCellId(cellId);
           graph.updateTargetCellId(cellId);
         } else {
           const newCellType =
-            PlaceableColorMapping[cellTypeAsString] === cellColor
-              ? AllColorMapping.Unvisited
-              : PlaceableColorMapping[cellTypeAsString];
+            PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] === cellColor
+              ? ALL_COLOR_MAPPINGS.Unvisited
+              : PLACEABLE_COLOR_MAPPINGS[cellTypeAsString];
           setCellColor(newCellType);
         }
         graph
           .getNode(cellId)
-          .setCellType(PlaceableColorMapping[cellTypeAsString]);
+          .setCellType(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
       }}
     />
   );

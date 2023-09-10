@@ -1,10 +1,11 @@
-import { AllColorMapping, CellId } from "../../Utility/types";
+import { ALL_COLOR_MAPPINGS } from "../../Utility/constants";
+import { ALL_COLOR_MAPPINGS_TYPE, CellId } from "../../Utility/types";
 
 export default class Node {
   cellId: CellId;
   weight: number;
   isVisited: boolean;
-  cellType: AllColorMapping;
+  cellType: ALL_COLOR_MAPPINGS_TYPE;
   previouslyVisitedCellId: CellId | null;
   // previously visited id
 
@@ -12,7 +13,7 @@ export default class Node {
     this.cellId = cellId;
     this.weight = 1;
     this.isVisited = false;
-    this.cellType = AllColorMapping.Unvisited;
+    this.cellType = ALL_COLOR_MAPPINGS.Unvisited;
     this.previouslyVisitedCellId = null;
   }
 
@@ -45,7 +46,7 @@ export default class Node {
   setWeight(weight: number): void {
     this.weight = weight;
   }
-  setCellType(newNodeType: AllColorMapping) {
+  setCellType(newNodeType: ALL_COLOR_MAPPINGS_TYPE) {
     this.cellType = newNodeType;
   }
   setIsVisited(isVisited: boolean) {

@@ -1,34 +1,20 @@
-export interface CellId {
+import {
+  ALL_COLOR_MAPPINGS,
+  PLACEABLE_COLOR_MAPPINGS,
+  UNPLACEABLE_COLOR_MAPPINGS,
+  VISITABLE_COLOR_MAPPINGS,
+} from "./constants";
+
+export type CellId = {
   y: number;
   x: number;
-}
-
-export enum SinglePlaceableColorMapping {
-  Source = "bg-green-500",
-  Target = "bg-red-500",
-}
-
-export enum MultiplePlaceableColorMapping {
-  Weight = "bg-gray-500",
-  Wall = "bg-zinc-800",
-}
-
-export type PlaceableColorMapping =
-  | SinglePlaceableColorMapping
-  | MultiplePlaceableColorMapping;
-export const PlaceableColorMapping = {
-  ...SinglePlaceableColorMapping,
-  ...MultiplePlaceableColorMapping,
 };
 
-export enum UnplaceableColorMapping {
-  Unvisited = "bg-white",
-  Visited = "bg-blue-500",
-  Path = "bg-yellow-500",
-}
-
-export type AllColorMapping = PlaceableColorMapping | UnplaceableColorMapping;
-export const AllColorMapping = {
-  ...PlaceableColorMapping,
-  ...UnplaceableColorMapping,
-};
+export type ALL_COLOR_MAPPINGS_TYPE =
+  typeof ALL_COLOR_MAPPINGS[keyof typeof ALL_COLOR_MAPPINGS];
+export type PLACEABLE_COLOR_MAPPINGS_TYPE =
+  typeof PLACEABLE_COLOR_MAPPINGS[keyof typeof PLACEABLE_COLOR_MAPPINGS];
+export type UNPLACEABLE_COLOR_MAPPINGS_TYPE =
+  typeof UNPLACEABLE_COLOR_MAPPINGS[keyof typeof UNPLACEABLE_COLOR_MAPPINGS];
+export type VISITABLE_COLOR_MAPPINGS =
+  typeof VISITABLE_COLOR_MAPPINGS[keyof typeof VISITABLE_COLOR_MAPPINGS];

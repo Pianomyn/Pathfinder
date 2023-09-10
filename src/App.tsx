@@ -1,8 +1,8 @@
 import "./App.css";
 import Graph from "./Algorithms/Graph/Graph";
 
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "./Utility/constants";
-import { PlaceableColorMapping, CellId } from "./Utility/types";
+import { DEFAULT_HEIGHT, DEFAULT_WIDTH, PLACEABLE_COLOR_MAPPINGS } from "./Utility/constants";
+import { CellId } from "./Utility/types";
 import Grid from "./Grid/Grid";
 import PlayBar from "./MenuBar/PlayBar";
 import SettingsBar from "./MenuBar/SettingsBar";
@@ -18,7 +18,7 @@ export default function App() {
   const [hideInputError, setHideInputError] = useState<boolean>(true);
 
   const [currentCellTypeToPlace, setCurrentCellTypeToPlace] =
-    useState<PlaceableColorMapping | null>(null);
+    useState<typeof PLACEABLE_COLOR_MAPPINGS | null>(null);
   const [sourceCellId, setSourceCellId] = useState<CellId | null>(null);
   const [targetCellId, setTargetCellId] = useState<CellId | null>(null);
   const [graph, setGraph] = useState(

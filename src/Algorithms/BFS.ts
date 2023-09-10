@@ -1,6 +1,6 @@
-import { VISITABLE_CELL_TYPES } from "../Utility/constants";
+import { ALL_COLOR_MAPPINGS, VISITABLE_COLOR_MAPPINGS } from "../Utility/constants";
 import Algorithm from "./AlgorithmTemplate";
-import { AllColorMapping, CellId } from "../Utility/types";
+import {  CellId } from "../Utility/types";
 import Graph from "./Graph/Graph";
 import Node from "./Graph/Node";
 
@@ -20,10 +20,10 @@ export default class BFS extends Algorithm {
     for (let node of this.expanded) {
       //const nodeCellId = node.getCellId()
       if (
-        node.getCellType() !== AllColorMapping.Source &&
-        node.getCellType() !== AllColorMapping.Target
+        node.getCellType() !== ALL_COLOR_MAPPINGS.Source &&
+        node.getCellType() !== ALL_COLOR_MAPPINGS.Target
       ) {
-        this.graph.updateCellColor(node.getCellId(), AllColorMapping.Visited);
+        this.graph.updateCellColor(node.getCellId(), ALL_COLOR_MAPPINGS.Visited);
         await new Promise((resolve) =>
           setTimeout(resolve, this.animationDelay)
         );
@@ -37,12 +37,12 @@ export default class BFS extends Algorithm {
         this.graph.getNode(targetCellId);
       while (currentNodeInShortestPath) {
         if (
-          currentNodeInShortestPath.getCellType() !== AllColorMapping.Source &&
-          currentNodeInShortestPath.getCellType() !== AllColorMapping.Target
+          currentNodeInShortestPath.getCellType() !== ALL_COLOR_MAPPINGS.Source &&
+          currentNodeInShortestPath.getCellType() !== ALL_COLOR_MAPPINGS.Target
         ) {
           this.graph.updateCellColor(
             currentNodeInShortestPath.getCellId(),
-            AllColorMapping.Path
+            ALL_COLOR_MAPPINGS.Path
           );
         }
 
@@ -157,7 +157,7 @@ export default class BFS extends Algorithm {
       // Insert into expanded
       expanded.push(currentNode);
       // Check if popped node is target
-      if (currentNode.getCellType() === AllColorMapping.Target) {
+      if (currentNode.getCellType() === ALL_COLOR_MAPPINGS.Target) {
         break;
       }
 
@@ -177,18 +177,21 @@ export default class BFS extends Algorithm {
 
       neighbourNodes.forEach((n) => {
         if (
-          VISITABLE_CELL_TYPES.includes(n.getCellType()) &&
+          Object.values(VISITABLE_COLOR_MAPPINGS).includes(n.getCellType()) &&
           !n.getIsVisited() &&
           !this.checkIfInFrontier(frontierMap, n)
         ) {
           // @ts-ignore Saying currentNode might be null. Already checked if null
           n.setPreviouslyVisitedCellId(currentNode.getCellId());
+          console.log("REACHED INSIDE IF")
           this.insertIntoFrontier(frontier, frontierMap, n);
         }
       });
+      console.log(frontier)
 
       //var currentNodeHeight = currentNode.height
     }
     this.setExpanded(expanded);
+    console.log("EXPANDED", expanded)
   }
 }

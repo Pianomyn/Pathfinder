@@ -1,14 +1,8 @@
+import { ALL_COLOR_MAPPINGS } from "../../Utility/constants";
 import {
-  AllColorMapping,
+    ALL_COLOR_MAPPINGS_TYPE,
   CellId,
-  SinglePlaceableColorMapping,
 } from "../../Utility/types";
-import {
-  ALL_CELL_TYPES,
-  VISITABLE_CELL_TYPES,
-  SOURCE_AND_TARGET,
-  WALLS_AND_WEIGHTS,
-} from "../../Utility/constants";
 import Node from "./Node";
 
 export default class Graph {
@@ -61,16 +55,16 @@ export default class Graph {
   }
 
   getCell(cellId: CellId) {
-    // Get HTML cell
     return document.getElementById(JSON.stringify(cellId));
   }
 
-  updateCellColor(cellId: CellId, newColor: AllColorMapping) {
+  updateCellColor(cellId: CellId, newColor: ALL_COLOR_MAPPINGS_TYPE) {
+    // TODO: BAD. Responsibility for setting colors should be within grid.tsx
     var cell = this.getCell(cellId);
     if (cell) {
       for (let element of cell.classList) {
         // @ts-ignore TODO: Fix typecasting
-        if (ALL_CELL_TYPES.includes(element)) {
+        if (Object.values(ALL_COLOR_MAPPINGS).includes(element)) {
           cell.classList.remove(element);
         }
       }
@@ -87,26 +81,26 @@ export default class Graph {
     this.targetCellId = cellId;
   }
 
-  clearGraph(cellTypesToClear: AllColorMapping[]) {
+  clearGraph(cellTypesToClear: ALL_COLOR_MAPPINGS_TYPE) {
     for (var r = 0; r < this.height; r++) {
       for (var c = 0; c < this.width; c++) {
         var currentId = { y: r, x: c };
         var currentNode = this.getNode(currentId);
         if (cellTypesToClear.includes(currentNode.getCellType())) {
-          if (currentNode.getCellType() == AllColorMapping.Source) {
+          if (currentNode.getCellType() == ALL_COLOR_MAPPINGS.Source) {
             this.setSourceCellId(null);
             this.updateSourceCellId(null);
           }
-          if (currentNode.getCellType() == AllColorMapping.Target) {
+          if (currentNode.getCellType() == ALL_COLOR_MAPPINGS.Target) {
             this.setTargetCellId(null);
             this.updateTargetCellId(null);
           }
 
           this.updateCellColor(
             currentNode.getCellId(),
-            AllColorMapping.Unvisited
+            ALL_COLOR_MAPPINGS.Unvisited
           );
-          currentNode.setCellType(AllColorMapping.Unvisited);
+          currentNode.setCellType(ALL_COLOR_MAPPINGS.Unvisited);
           currentNode.setIsVisited(false);
           currentNode.setPreviouslyVisitedCellId(null);
         }
