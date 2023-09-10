@@ -3,7 +3,11 @@
  */
 import BFS from "../Algorithms/BFS";
 import DFS from "../Algorithms/DFS";
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "../Utility/constants";
+import {
+  ALL_COLOR_MAPPINGS,
+  DEFAULT_HEIGHT,
+  DEFAULT_WIDTH,
+} from "../Utility/constants";
 import { CellId } from "../Utility/types";
 import Algorithm from "../Algorithms/AlgorithmTemplate";
 import Graph from "../Algorithms/Graph/Graph";
@@ -92,6 +96,7 @@ const SettingsBar = ({
               setHeight,
               setHideInputError
             );
+            graph.clearGraph(Object.values(ALL_COLOR_MAPPINGS));
           }}
         ></input>
         <input
@@ -105,6 +110,7 @@ const SettingsBar = ({
               setWidth,
               setHideInputError
             );
+            graph.clearGraph(Object.values(ALL_COLOR_MAPPINGS));
           }}
         ></input>
       </div>
