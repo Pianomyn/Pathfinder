@@ -2,7 +2,7 @@ import "./App.css";
 import Graph from "./Algorithms/Graph/Graph";
 
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH, PLACEABLE_COLOR_MAPPINGS } from "./Utility/constants";
-import { CellId } from "./Utility/types";
+import { CellId, PLACEABLE_COLOR_MAPPINGS_TYPE } from "./Utility/types";
 import Grid from "./Grid/Grid";
 import PlayBar from "./MenuBar/PlayBar";
 import SettingsBar from "./MenuBar/SettingsBar";
@@ -10,7 +10,6 @@ import ColorKeyBar from "./MenuBar/ColorKeyBar";
 import { useEffect, useState } from "react";
 import BFS from "./Algorithms/BFS";
 import Algorithm from "./Algorithms/AlgorithmTemplate";
-import { AlgorithmType } from "./Algorithms/AlgorithmTypes";
 
 export default function App() {
   const [width, setWidth] = useState<number>(DEFAULT_WIDTH);
@@ -18,7 +17,7 @@ export default function App() {
   const [hideInputError, setHideInputError] = useState<boolean>(true);
 
   const [currentCellTypeToPlace, setCurrentCellTypeToPlace] =
-    useState<typeof PLACEABLE_COLOR_MAPPINGS | null>(null);
+    useState<PLACEABLE_COLOR_MAPPINGS_TYPE | null>(null);
   const [sourceCellId, setSourceCellId] = useState<CellId | null>(null);
   const [targetCellId, setTargetCellId] = useState<CellId | null>(null);
   const [graph, setGraph] = useState(
@@ -35,7 +34,7 @@ export default function App() {
   //graph = new Graph(height, width, sourceCellId, targetCellId);
 
   const [canEdit, setCanEdit] = useState<boolean>(true);
-  const [currentAlgorithm, setCurrentAlgorithm] = useState<AlgorithmType>(
+  const [currentAlgorithm, setCurrentAlgorithm] = useState<Algorithm>(
     new BFS(graph)
   );
 

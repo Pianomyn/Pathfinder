@@ -81,7 +81,7 @@ export default class Graph {
     this.targetCellId = cellId;
   }
 
-  clearGraph(cellTypesToClear: ALL_COLOR_MAPPINGS_TYPE) {
+  clearGraph(cellTypesToClear: ALL_COLOR_MAPPINGS_TYPE[]) {
     for (var r = 0; r < this.height; r++) {
       for (var c = 0; c < this.width; c++) {
         var currentId = { y: r, x: c };

@@ -6,7 +6,6 @@ import DFS from "../Algorithms/DFS";
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "../Utility/constants";
 import { CellId } from "../Utility/types";
 import Algorithm from "../Algorithms/AlgorithmTemplate";
-import { AlgorithmType } from "../Algorithms/AlgorithmTypes";
 import Graph from "../Algorithms/Graph/Graph";
 
 function setHeightOrWidth(
@@ -40,7 +39,7 @@ interface SettingsBarProps {
   width: number;
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
-  setCurrentAlgorithm: (value: AlgorithmType) => void; // TODO: fix type later
+  setCurrentAlgorithm: (value: Algorithm) => void; // TODO: fix type later
   graph: Graph;
 }
 
@@ -59,7 +58,7 @@ const SettingsBar = ({
   var bfs = new BFS(graph);
   var dfs = new DFS(graph);
 
-  type algorithmMappingType = { [key: string]: AlgorithmType };
+  type algorithmMappingType = { [key: string]: Algorithm };
   var algorithmMapping: algorithmMappingType = {
     BFS: bfs,
     DFS: dfs,

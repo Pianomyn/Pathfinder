@@ -2,17 +2,18 @@ import "./Grid.css";
 
 import Cell from "./Cell";
 import {
-  CellId,
+  CellId, PLACEABLE_COLOR_MAPPINGS_TYPE,
 } from "../Utility/types";
 import React, { useEffect, useState } from "react";
 import Graph from "../Algorithms/Graph/Graph";
 import { ALL_COLOR_MAPPINGS, PLACEABLE_COLOR_MAPPINGS } from "../Utility/constants";
+import { createCellId } from "../Utility/CellId";
 
 interface GridProps {
   graph: Graph;
   height: number;
   width: number;
-  currentCellToPlace: typeof PLACEABLE_COLOR_MAPPINGS | null;
+  currentCellToPlace: PLACEABLE_COLOR_MAPPINGS_TYPE | null;
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
   setSourceCellId: (value: CellId | null) => void;
@@ -36,9 +37,9 @@ export default function Grid({
     for (var x = 0; x < width; x++) {
       cells.push(
         <Cell
-          key={`${x}-${y}`}
+          key={JSON.stringify(createCellId(y, x))}
           graph={graph}
-          cellId={{ y: y, x: x }}
+          cellId={createCellId(y, x)}
           mouseDown={mouseDown}
           currentCellToPlace={currentCellToPlace}
           sourceCellId={sourceCellId}

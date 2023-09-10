@@ -1,15 +1,6 @@
 export const DEFAULT_HEIGHT = 20;
 export const DEFAULT_WIDTH = 50;
 
-/*
-  const Source = "bg-green-500"
-  const Target = "bg-red-500"
-  const Weight = "bg-gray-500"
-  const Wall = "bg-zinc-800"
-  const Unvisited = "bg-white"
-  const Visited = "bg-blue-500"
-  const Path = "bg-yellow-500"
-  */
 export const ALL_COLOR_MAPPINGS = {
   Source: "bg-green-500",
   Target: "bg-red-500",

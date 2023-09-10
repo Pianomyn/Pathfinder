@@ -3,16 +3,18 @@ import "./Cell.css";
 import {
     ALL_COLOR_MAPPINGS_TYPE,
   CellId,
+  PLACEABLE_COLOR_MAPPINGS_TYPE,
 } from "../Utility/types";
 import React, { useEffect, useState } from "react";
 import Graph from "../Algorithms/Graph/Graph";
 import { ALL_COLOR_MAPPINGS, PLACEABLE_COLOR_MAPPINGS } from "../Utility/constants";
+import { cellIdIsEqual } from "../Utility/CellId";
 
 type CellProps = {
   graph: Graph;
   cellId: CellId;
   mouseDown: boolean;
-  currentCellToPlace: typeof PLACEABLE_COLOR_MAPPINGS | null;
+  currentCellToPlace:  PLACEABLE_COLOR_MAPPINGS_TYPE | null;
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
   setSourceCellId: (value: CellId | null) => void;
@@ -20,10 +22,6 @@ type CellProps = {
   height: number;
   width: number;
 };
-
-function cellIdIsEqual(cellId: CellId, otherCellId: CellId) {
-  return JSON.stringify(cellId) === JSON.stringify(otherCellId)
-}
 
 function Cell({
   graph,
@@ -40,11 +38,33 @@ function Cell({
   const [cellColor, setCellColor] = useState<ALL_COLOR_MAPPINGS_TYPE>(
     ALL_COLOR_MAPPINGS.Unvisited
   );
+  const [previousSourceCellId, setPreviousSourceCellId] = useState<CellId | null>(
+  null
+  );
+  const [previousTargetCellId, setPreviousTargetCellId] = useState<CellId | null>(
+  null
+  );
   useEffect(() => {
     setCellColor(ALL_COLOR_MAPPINGS.Unvisited);
     setSourceCellId(null);
     setTargetCellId(null);
   }, [height, width]);
+
+  useEffect(()=> {
+    if (previousSourceCellId && cellIdIsEqual(cellId, previousSourceCellId)) {
+      setCellColor(ALL_COLOR_MAPPINGS.Unvisited)
+      graph.getNode(cellId).setCellType(ALL_COLOR_MAPPINGS.Unvisited)
+    }
+    setPreviousSourceCellId(sourceCellId)
+  }, [sourceCellId])
+
+  useEffect(()=> {
+    if (previousTargetCellId && cellIdIsEqual(cellId, previousTargetCellId)) {
+      setCellColor(ALL_COLOR_MAPPINGS.Unvisited)
+      graph.getNode(cellId).setCellType(ALL_COLOR_MAPPINGS.Unvisited)
+    }
+    setPreviousTargetCellId(targetCellId)
+  }, [targetCellId])
 
   var cellTypeAsString =
     currentCellToPlace as string as keyof typeof PLACEABLE_COLOR_MAPPINGS;
@@ -98,13 +118,14 @@ function Cell({
           PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
           PLACEABLE_COLOR_MAPPINGS.Source
         ) {
-          setCellColor(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
+          console.log("REACHED")
+          setCellColor(ALL_COLOR_MAPPINGS.Source)
           setSourceCellId(cellId);
           graph.updateSourceCellId(cellId);
         } else if (
           ALL_COLOR_MAPPINGS[cellTypeAsString] == PLACEABLE_COLOR_MAPPINGS.Target
         ) {
-          setCellColor(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
+          setCellColor(ALL_COLOR_MAPPINGS.Target)
           setTargetCellId(cellId);
           graph.updateTargetCellId(cellId);
         } else {

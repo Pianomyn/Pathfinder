@@ -1,6 +1,5 @@
 import { ClassType } from "react";
 import Algorithm from "../Algorithms/AlgorithmTemplate";
-import { AlgorithmType } from "../Algorithms/AlgorithmTypes";
 import BFS from "../Algorithms/BFS";
 import DFS from "../Algorithms/DFS";
 import Graph from "../Algorithms/Graph/Graph";
@@ -10,7 +9,7 @@ import { ALL_COLOR_MAPPINGS_TYPE } from "../Utility/types";
 interface PlayBarProps {
   graph: Graph;
   setCanEdit: (value: boolean) => void;
-  currentAlgorithm: AlgorithmType;
+  currentAlgorithm: Algorithm;
 }
 
 const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
@@ -41,7 +40,7 @@ const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
         </button>
         <button
           className="p-2 mx-0.5 border border-solid "
-          onClick={() => graph.clearGraph(ALL_COLOR_MAPPINGS)}
+          onClick={() => graph.clearGraph(Object.values(ALL_COLOR_MAPPINGS))}
         >
           Reset
         </button>
