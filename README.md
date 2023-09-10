@@ -1,18 +1,11 @@
-Deployed version: https://pianomyn.github.io/pathfinder/
-<br />
-
-# TODO
-
-- Fix logic around locking grid for editting (resetting etc)
-
-## Unweighted
-
+# Pathfinder
+[Intro]
+[Gif]
 - BFS
 - DFS
 - Greedy
-- A\*
-
-## Weighted
-
 - Djikstra
-- Weighted A\*
+- A*
+- IDDFS??
+Deployed version: https://pianomyn.github.io/pathfinder/
+<br />
