@@ -62,8 +62,7 @@ export default class Graph {
 
   getCell(cellId: CellId) {
     // Get HTML cell
-    const cellIdString = `${cellId.y}-${cellId.x}`;
-    return document.getElementById(cellIdString);
+    return document.getElementById(JSON.stringify(cellId));
   }
 
   updateCellColor(cellId: CellId, newColor: AllColorMapping) {

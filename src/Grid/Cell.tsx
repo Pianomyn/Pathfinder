@@ -21,6 +21,10 @@ type CellProps = {
   width: number;
 };
 
+function cellIdIsEqual(cellId: CellId, otherCellId: CellId) {
+  return JSON.stringify(cellId) === JSON.stringify(otherCellId)
+}
+
 function Cell({
   graph,
   cellId,
@@ -48,7 +52,7 @@ function Cell({
   // Unreadable :/ need to refactor.
   return (
     <td
-      id={`${cellId.y}-${cellId.x}`}
+      id={JSON.stringify(cellId)}
       className={`cell ${cellColor} ${
         cellId === sourceCellId ? PlaceableColorMapping.Source : ""
       } ${cellId === targetCellId ? PlaceableColorMapping.Target : ""}`}
@@ -77,26 +81,31 @@ function Cell({
         }
       }}
       onClick={() => {
+        console.log("reached")
+        console.log(targetCellId, sourceCellId, cellId)
+        /*
         if (JSON.stringify(targetCellId) === JSON.stringify(cellId)) {
           graph.updateTargetCellId(null);
           setTargetCellId(null);
+          console.log("reached2")
         }
         if (JSON.stringify(sourceCellId) === JSON.stringify(cellId)) {
+          console.log("reached3")
           graph.updateSourceCellId(null);
           setSourceCellId(null);
         }
+        */
+
         if (
           PlaceableColorMapping[cellTypeAsString] ==
           PlaceableColorMapping.Source
         ) {
-          if (sourceCellId) return;
           setCellColor(PlaceableColorMapping[cellTypeAsString]);
           setSourceCellId(cellId);
           graph.updateSourceCellId(cellId);
         } else if (
           AllColorMapping[cellTypeAsString] == PlaceableColorMapping.Target
         ) {
-          if (targetCellId) return;
           setCellColor(PlaceableColorMapping[cellTypeAsString]);
           setTargetCellId(cellId);
           graph.updateTargetCellId(cellId);

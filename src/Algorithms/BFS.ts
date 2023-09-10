@@ -190,15 +190,5 @@ export default class BFS extends Algorithm {
       //var currentNodeHeight = currentNode.height
     }
     this.setExpanded(expanded);
-    /*
-    const source = document.getElementById(
-      `${this.sourceCellId.height}-${this.sourceCellId.width}`
-    );
-  var cell = document.getElementById("3-2");
-  if (cell) {
-    //cell.classList.remove(AllColorMapping.Unvisited);
-    //cell.classList.add(AllColorMapping.Wall);
-  }
-    */
   }
 }
