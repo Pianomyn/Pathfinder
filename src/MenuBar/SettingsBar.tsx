@@ -71,8 +71,6 @@ const SettingsBar = ({
         <select
           className="p-2 mx-0.5 w-4/12 text-center border-solid border"
           onChange={(event) => {
-            console.log("reached select onchange");
-            console.log(event.target.value);
             var algorithmName = event.target.value;
             setCurrentAlgorithm(algorithmMapping[algorithmName]);
           }}

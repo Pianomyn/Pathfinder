@@ -34,7 +34,6 @@ const ColorKey = ({
         } else {
           setCurrentlySelectedIndex(index);
           setCurrentCellToPlace(name);
-          //console.log(name);
         }
       }}
     >

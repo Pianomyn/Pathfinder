@@ -57,7 +57,6 @@ export default class Graph {
   getNode(cellId: CellId): Node {
     // Assumes x and y are valid
     const { y, x } = cellId;
-    //console.log("X AND Y", y, x);
     return this.graph[y][x];
   }
 

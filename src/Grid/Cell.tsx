@@ -101,8 +101,6 @@ function Cell({
           setTargetCellId(cellId);
           graph.updateTargetCellId(cellId);
         } else {
-          console.log(cellTypeAsString);
-          console.log(cellColor);
           const newCellType =
             PlaceableColorMapping[cellTypeAsString] === cellColor
               ? AllColorMapping.Unvisited
@@ -112,7 +110,6 @@ function Cell({
         graph
           .getNode(cellId)
           .setCellType(PlaceableColorMapping[cellTypeAsString]);
-        console.log(graph.getNode(cellId));
       }}
     />
   );

@@ -33,7 +33,6 @@ export default function App() {
   );
 
   //graph = new Graph(height, width, sourceCellId, targetCellId);
-  ///console.log(graph);
 
   const [canEdit, setCanEdit] = useState<boolean>(true);
   const [currentAlgorithm, setCurrentAlgorithm] = useState<AlgorithmType>(
@@ -52,8 +51,6 @@ export default function App() {
   useEffect(() => {
     graph.setSourceCellId(sourceCellId);
     graph.setTargetCellId(targetCellId);
-    console.log(sourceCellId, targetCellId);
-    console.log(graph);
   }, [sourceCellId, targetCellId]);
 
   return (

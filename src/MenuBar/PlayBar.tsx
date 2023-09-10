@@ -19,7 +19,6 @@ const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
         <button
           className="p-2 mx-0.5 border border-solid "
           onClick={() => {
-            console.log(currentAlgorithm);
             setCanEdit(false);
             currentAlgorithm.setGraph(graph);
             currentAlgorithm.findPath();
@@ -33,7 +32,6 @@ const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
 
             //var bfs = new BFS(graph);
             //var bfs = new currentAlgorithm(graph)
-            //console.log(bfs.graph);
             //bfs.findShortestPath();
             setCanEdit(true);
           }}

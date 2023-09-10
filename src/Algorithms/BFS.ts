@@ -148,15 +148,12 @@ export default class BFS extends Algorithm {
       frontierMap,
       this.graph.getNode(sourceCellId)
     );
-    console.log("FRONTIER", frontier);
 
     while (frontier.length > 0) {
-      console.log("REACHED WHILE LOOP");
       // Pop from frontier and mark as visited
       var currentNode = this.popFromFrontier(frontier, frontierMap);
       currentNode?.setIsVisited(true);
       if (!currentNode) break; // Shouldn't need this but lang server wasn't happy
-      console.log(currentNode);
       // Insert into expanded
       expanded.push(currentNode);
       // Check if popped node is target
@@ -177,7 +174,6 @@ export default class BFS extends Algorithm {
         graphHeight,
         graphWidth
       );
-      console.log("NEIGHBOURS", neighbourNodes);
 
       neighbourNodes.forEach((n) => {
         if (
@@ -194,7 +190,6 @@ export default class BFS extends Algorithm {
       //var currentNodeHeight = currentNode.height
     }
     this.setExpanded(expanded);
-    console.log(expanded);
     /*
     const source = document.getElementById(
       `${this.sourceCellId.height}-${this.sourceCellId.width}`
