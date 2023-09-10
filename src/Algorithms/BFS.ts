@@ -128,7 +128,10 @@ export default class BFS extends Algorithm {
     while (frontier.length > 0) {
       // Pop from frontier and mark as visited
       var currentNode = this.popFromFrontier(frontier);
-      currentNode?.setIsVisited(true);
+      currentNode?.setIsVisited(true); // TODO: Remove isVisited field, redundant
+      if (currentNode?.getCellType() != ALL_COLOR_MAPPINGS.Source && currentNode?.getCellType() != ALL_COLOR_MAPPINGS.Target) {
+        currentNode?.setCellType(ALL_COLOR_MAPPINGS.Visited)
+      }
       if (!currentNode) break; // Shouldn't need this but lang server wasn't happy
       // Insert into expanded
       expanded.push(currentNode);

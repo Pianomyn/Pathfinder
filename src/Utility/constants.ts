@@ -30,6 +30,12 @@ export const VISITABLE_COLOR_MAPPINGS = {
   Target: ALL_COLOR_MAPPINGS.Target,
 };
 
+export const EXPLORED_COLOR_MAPPINGS = {
+  Visited: ALL_COLOR_MAPPINGS.Visited,
+  Path: ALL_COLOR_MAPPINGS.Path,
+}
+
+
 /*
 export const ObstacleColorMappings = {
   Weight: ALL_COLOR_MAPPINGS.Visited,

@@ -1,3 +1,4 @@
+import { createCellId } from "../../Utility/CellId";
 import { ALL_COLOR_MAPPINGS } from "../../Utility/constants";
 import {
     ALL_COLOR_MAPPINGS_TYPE,
@@ -84,7 +85,7 @@ export default class Graph {
   clearGraph(cellTypesToClear: ALL_COLOR_MAPPINGS_TYPE[]) {
     for (var r = 0; r < this.height; r++) {
       for (var c = 0; c < this.width; c++) {
-        var currentId = { y: r, x: c };
+        var currentId = createCellId(r, c);
         var currentNode = this.getNode(currentId);
         if (cellTypesToClear.includes(currentNode.getCellType())) {
           if (currentNode.getCellType() == ALL_COLOR_MAPPINGS.Source) {
@@ -104,8 +105,6 @@ export default class Graph {
           currentNode.setIsVisited(false);
           currentNode.setPreviouslyVisitedCellId(null);
         }
-
-        //var cellTypesToClear = [...SOURCE_AND_TARGET, ...WALLS_AND_WEIGHTS];
       }
     }
   }

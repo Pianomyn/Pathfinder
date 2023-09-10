@@ -3,7 +3,7 @@ import Algorithm from "../Algorithms/AlgorithmTemplate";
 import BFS from "../Algorithms/BFS";
 import DFS from "../Algorithms/DFS";
 import Graph from "../Algorithms/Graph/Graph";
-import { ALL_COLOR_MAPPINGS } from "../Utility/constants";
+import { ALL_COLOR_MAPPINGS, EXPLORED_COLOR_MAPPINGS, VISITABLE_COLOR_MAPPINGS } from "../Utility/constants";
 import { ALL_COLOR_MAPPINGS_TYPE } from "../Utility/types";
 
 interface PlayBarProps {
@@ -42,7 +42,7 @@ const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
           className="p-2 mx-0.5 border border-solid "
           onClick={() => graph.clearGraph(Object.values(ALL_COLOR_MAPPINGS))}
         >
-          Reset
+          Reset all
         </button>
       </div>
     </div>
