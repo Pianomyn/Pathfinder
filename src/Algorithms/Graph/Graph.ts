@@ -1,9 +1,7 @@
+import { useEffect } from "react";
 import { createCellId } from "../../Utility/CellId";
 import { ALL_COLOR_MAPPINGS } from "../../Utility/constants";
-import {
-    ALL_COLOR_MAPPINGS_TYPE,
-  CellId,
-} from "../../Utility/types";
+import { ALL_COLOR_MAPPINGS_TYPE, CellId } from "../../Utility/types";
 import Node from "./Node";
 
 export default class Graph {
@@ -61,6 +59,7 @@ export default class Graph {
 
   updateCellColor(cellId: CellId, newColor: ALL_COLOR_MAPPINGS_TYPE) {
     // TODO: BAD. Responsibility for setting colors should be within grid.tsx
+    // How else to animate cells in order?
     var cell = this.getCell(cellId);
     if (cell) {
       for (let element of cell.classList) {
@@ -82,31 +81,52 @@ export default class Graph {
     this.targetCellId = cellId;
   }
 
-  clearGraph(cellTypesToClear: ALL_COLOR_MAPPINGS_TYPE[]) {
+  resetGraph(
+    clearWallsAndWeights: boolean,
+    clearPath: boolean,
+    clearSourceAndTarget: boolean
+  ): Set<CellId> {
+    /*
+     * Resets any nodes that match the filter parameters.
+     *
+     * Returns all CellIds that were reset.
+     */
+    var updatedCellIds: Set<CellId> = new Set();
+
     for (var r = 0; r < this.height; r++) {
       for (var c = 0; c < this.width; c++) {
         var currentId = createCellId(r, c);
         var currentNode = this.getNode(currentId);
-        if (cellTypesToClear.includes(currentNode.getCellType())) {
-          if (currentNode.getCellType() == ALL_COLOR_MAPPINGS.Source) {
-            this.setSourceCellId(null);
-            this.updateSourceCellId(null);
-          }
-          if (currentNode.getCellType() == ALL_COLOR_MAPPINGS.Target) {
-            this.setTargetCellId(null);
-            this.updateTargetCellId(null);
-          }
 
-          this.updateCellColor(
-            currentNode.getCellId(),
-            ALL_COLOR_MAPPINGS.Unvisited
-          );
-          currentNode.setCellType(ALL_COLOR_MAPPINGS.Unvisited);
+        if (
+          clearWallsAndWeights &&
+          (currentNode.getIsWeight() || currentNode.getIsWall())
+        ) {
+          currentNode.setIsWeight(false);
+          currentNode.setIsWall(false);
+          updatedCellIds.add(currentId);
+        }
+        if (
+          clearPath && currentNode.getIsVisited()
+        ) {
           currentNode.setIsVisited(false);
-          currentNode.setPreviouslyVisitedCellId(null);
+          updatedCellIds.add(currentId);
+        }
+        if (
+          clearSourceAndTarget
+        ) {
+          if(this.sourceCellId != null) {
+            updatedCellIds.add(currentId);
+            this.sourceCellId = null;
+          }
+          else if(this.targetCellId != null) {
+            updatedCellIds.add(currentId);
+            this.targetCellId = null;
+          }
         }
       }
     }
+    return updatedCellIds
   }
 
   generateGraph(height: number, width: number): Node[][] {

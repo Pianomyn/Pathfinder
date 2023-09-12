@@ -1,58 +1,63 @@
-import { ALL_COLOR_MAPPINGS } from "../../Utility/constants";
-import { ALL_COLOR_MAPPINGS_TYPE, CellId } from "../../Utility/types";
+import { CellId } from "../../Utility/types";
 
 export default class Node {
-  cellId: CellId;
-  weight: number;
-  isVisited: boolean;
-  cellType: ALL_COLOR_MAPPINGS_TYPE;
-  previouslyVisitedCellId: CellId | null;
-  // previously visited id
+  #cellId: CellId;
+  #isVisited: boolean;
+  #isWeight: boolean;
+  #isWall: boolean;
+  #previouslyVisitedCellId: CellId | null;
 
   constructor(cellId: CellId) {
-    this.cellId = cellId;
-    this.weight = 1;
-    this.isVisited = false;
-    this.cellType = ALL_COLOR_MAPPINGS.Unvisited;
-    this.previouslyVisitedCellId = null;
+    this.#cellId = cellId;
+    this.#isVisited = false;
+    this.#isWeight = false;
+    this.#isWall = false;
+    this.#previouslyVisitedCellId = null;
   }
 
   // Getters
   getCellId() {
-    return this.cellId;
+    return this.#cellId;
+  }
+
+  getIsWeight() {
+    return this.#isWeight;
   }
 
   getIsVisited() {
-    return this.isVisited;
+    return this.#isVisited;
+  }
+
+  getIsWall() {
+    return this.#isWall;
   }
 
   getCellY() {
-    return this.cellId.y;
+    return this.#cellId.y;
   }
 
   getCellX() {
-    return this.cellId.x;
-  }
-
-  getCellType() {
-    return this.cellType;
+    return this.#cellId.x;
   }
 
   getPreviouslyVisitedCellId() {
-    return this.previouslyVisitedCellId;
+    return this.#previouslyVisitedCellId;
   }
 
   // Setters
-  setWeight(weight: number): void {
-    this.weight = weight;
+  setIsWeight(isWeight: boolean): void {
+    this.#isWeight = isWeight
   }
-  setCellType(newNodeType: ALL_COLOR_MAPPINGS_TYPE) {
-    this.cellType = newNodeType;
-  }
+
   setIsVisited(isVisited: boolean) {
-    this.isVisited = isVisited;
+    this.#isVisited = isVisited;
   }
+
+  setIsWall(isWall: boolean) {
+    return this.#isWall = isWall;
+  }
+
   setPreviouslyVisitedCellId(cellId: CellId | null) {
-    this.previouslyVisitedCellId = cellId;
+    this.#previouslyVisitedCellId = cellId;
   }
 }

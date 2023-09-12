@@ -30,6 +30,7 @@ function Cell({
   currentCellToPlace,
   sourceCellId,
   targetCellId,
+  // Should pass isWall
   setSourceCellId,
   setTargetCellId,
   height,
@@ -53,7 +54,8 @@ function Cell({
   useEffect(()=> {
     if (previousSourceCellId && cellIdIsEqual(cellId, previousSourceCellId)) {
       setCellColor(ALL_COLOR_MAPPINGS.Unvisited)
-      graph.getNode(cellId).setCellType(ALL_COLOR_MAPPINGS.Unvisited)
+      //graph.getNode(cellId).setIsSource(true);
+      setSourceCellId(cellId);
     }
     setPreviousSourceCellId(sourceCellId)
   }, [sourceCellId])
@@ -61,7 +63,8 @@ function Cell({
   useEffect(()=> {
     if (previousTargetCellId && cellIdIsEqual(cellId, previousTargetCellId)) {
       setCellColor(ALL_COLOR_MAPPINGS.Unvisited)
-      graph.getNode(cellId).setCellType(ALL_COLOR_MAPPINGS.Unvisited)
+      //graph.getNode(cellId).setIsTarget(true);
+      setTargetCellId(cellId)
     }
     setPreviousTargetCellId(targetCellId)
   }, [targetCellId])
@@ -93,11 +96,6 @@ function Cell({
             graph.updateSourceCellId(null);
             setSourceCellId(null);
           }
-
-          graph
-            .getNode(cellId)
-            .setCellType(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
-          setCellColor(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
         }
       }}
       onClick={() => {
@@ -128,16 +126,23 @@ function Cell({
           setCellColor(ALL_COLOR_MAPPINGS.Target)
           setTargetCellId(cellId);
           graph.updateTargetCellId(cellId);
+          graph.setTargetCellId
         } else {
           const newCellType =
             PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] === cellColor
               ? ALL_COLOR_MAPPINGS.Unvisited
               : PLACEABLE_COLOR_MAPPINGS[cellTypeAsString];
           setCellColor(newCellType);
+          var currentNode = graph.getNode(cellId);
+          if(newCellType === PLACEABLE_COLOR_MAPPINGS.Wall) {
+            currentNode.setIsWall(!currentNode.getIsWall());
+          }
+          else if(newCellType === PLACEABLE_COLOR_MAPPINGS.Weight) {
+            currentNode.setIsWeight(!currentNode.getIsWeight());
+          }
         }
         graph
           .getNode(cellId)
-          .setCellType(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
       }}
     />
   );

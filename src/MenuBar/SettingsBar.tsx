@@ -60,12 +60,14 @@ const SettingsBar = ({
   graph,
 }: SettingsBarProps) => {
   var bfs = new BFS(graph);
-  var dfs = new DFS(graph);
+  var dfs = new DFS(graph, false);
+  var dfs_random = new DFS(graph, true);
 
   type algorithmMappingType = { [key: string]: Algorithm };
   var algorithmMapping: algorithmMappingType = {
     BFS: bfs,
     DFS: dfs,
+    DFS_RANDOM: dfs_random,
   };
 
   return (
@@ -81,6 +83,7 @@ const SettingsBar = ({
           <option disabled>---- Unweighted ----</option>
           <option value="BFS">BFS</option>
           <option value="DFS">DFS</option>
+          <option value="DFS_RANDOM">DFS Random</option>
           <option disabled>---- Weighted ----</option>
           <option>Djikstra's Algorithm</option>
           <option>A*</option>
