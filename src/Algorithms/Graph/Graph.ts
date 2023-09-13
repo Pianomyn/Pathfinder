@@ -134,6 +134,8 @@ export default class Graph {
     cellIds.forEach(cellId => {
       this.updateCellColor(cellId, ALL_COLOR_MAPPINGS.Unvisited);
     })
+    this.setSourceCellId(null)
+    this.setTargetCellId(null)
   }
 
   generateGraph(height: number, width: number): Node[][] {

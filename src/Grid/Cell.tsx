@@ -88,26 +88,35 @@ function Cell({
             PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
               PLACEABLE_COLOR_MAPPINGS.Weight)
         ) {
-          if (JSON.stringify(targetCellId) === JSON.stringify(cellId)) {
-            graph.updateTargetCellId(null);
-            setTargetCellId(null);
-          }
-          else if (JSON.stringify(sourceCellId) === JSON.stringify(cellId)) {
-            graph.updateSourceCellId(null);
-            setSourceCellId(null);
-          }
-          else if( PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
+          if( PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
               PLACEABLE_COLOR_MAPPINGS.Weight) {
+                graph.getNode(cellId).setIsWeight(true);
+                setCellColor(PLACEABLE_COLOR_MAPPINGS.Weight)
               }
           else if(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
             PLACEABLE_COLOR_MAPPINGS.Wall) {
               graph.getNode(cellId).setIsWall(true);
+              setCellColor(PLACEABLE_COLOR_MAPPINGS.Wall)
             }
-            setCellColor(PLACEABLE_COLOR_MAPPINGS.Wall)
 
         }
       }}
       onClick={() => {
+          if (cellIdIsEqual(targetCellId, cellId)) {
+            console.log("same target", targetCellId)
+            graph.updateTargetCellId(null);
+            setTargetCellId(null);
+            setCellColor(ALL_COLOR_MAPPINGS.Unvisited)
+            return;
+          }
+          else if (cellIdIsEqual(sourceCellId, cellId)) {
+            console.log("same source", sourceCellId)
+            graph.updateSourceCellId(null);
+            setSourceCellId(null);
+            setCellColor(ALL_COLOR_MAPPINGS.Unvisited)
+            return;
+          }
+
         if (
           PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
           PLACEABLE_COLOR_MAPPINGS.Source
