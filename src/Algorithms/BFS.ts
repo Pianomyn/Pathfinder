@@ -11,7 +11,7 @@ import { cellIdIsEqual } from "../Utility/CellId";
 export default class BFS extends Algorithm {
   constructor(graph: Graph) {
     super(graph);
-    this.animationDelay = 3;
+    this.animationDelay = 6;
   }
 
   // Setters

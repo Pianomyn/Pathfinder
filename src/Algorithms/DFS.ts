@@ -30,7 +30,7 @@ export default class DFS extends Algorithm {
   random;
   constructor(graph: Graph, random: boolean) {
     super(graph);
-    this.animationDelay = 3;
+    this.animationDelay = 30;
     this.random = random;
   }
   // Setters
@@ -53,7 +53,7 @@ export default class DFS extends Algorithm {
       }
     }
 
-    // Animate shortest path
+    // Animate path
     const targetCellId = this.graph.getTargetCellId();
     if (targetCellId) {
       var currentNodeInShortestPath: Node | null =
@@ -66,6 +66,9 @@ export default class DFS extends Algorithm {
           this.graph.updateCellColor(
             currentNodeInShortestPath.getCellId(),
             ALL_COLOR_MAPPINGS.Path
+          );
+          await new Promise((resolve) =>
+            setTimeout(resolve, this.animationDelay)
           );
         }
 

@@ -92,10 +92,19 @@ function Cell({
             graph.updateTargetCellId(null);
             setTargetCellId(null);
           }
-          if (JSON.stringify(sourceCellId) === JSON.stringify(cellId)) {
+          else if (JSON.stringify(sourceCellId) === JSON.stringify(cellId)) {
             graph.updateSourceCellId(null);
             setSourceCellId(null);
           }
+          else if( PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
+              PLACEABLE_COLOR_MAPPINGS.Weight) {
+              }
+          else if(PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
+            PLACEABLE_COLOR_MAPPINGS.Wall) {
+              graph.getNode(cellId).setIsWall(true);
+            }
+            setCellColor(PLACEABLE_COLOR_MAPPINGS.Wall)
+
         }
       }}
       onClick={() => {
@@ -141,8 +150,6 @@ function Cell({
             currentNode.setIsWeight(!currentNode.getIsWeight());
           }
         }
-        graph
-          .getNode(cellId)
       }}
     />
   );

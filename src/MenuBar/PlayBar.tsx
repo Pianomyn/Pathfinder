@@ -23,16 +23,6 @@ const PlayBar = ({ graph, setCanEdit, currentAlgorithm }: PlayBarProps) => {
             currentAlgorithm.setGraph(graph);
             currentAlgorithm.findPath();
             currentAlgorithm.animatePath();
-            /*
-            var dfs = new DFS(graph);
-            dfs.setGraph(graph);
-            dfs.findShortestPath();
-            dfs.animateShortestPath();
-            */
-
-            //var bfs = new BFS(graph);
-            //var bfs = new currentAlgorithm(graph)
-            //bfs.findShortestPath();
             setCanEdit(true);
           }}
         >
