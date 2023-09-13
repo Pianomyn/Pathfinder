@@ -11,7 +11,7 @@ import { cellIdIsEqual } from "../Utility/CellId";
 export default class BFS extends Algorithm {
   constructor(graph: Graph) {
     super(graph);
-    this.animationDelay = 6;
+    this.animationDelay = 20;
   }
 
   // Setters
@@ -19,7 +19,10 @@ export default class BFS extends Algorithm {
     this.expanded = expanded;
   }
 
-  async animatePath() {
+  async animatePath(args: any[]) {
+    const [setCanEdit] = args;
+    console.log(setCanEdit, typeof(setCanEdit))
+    setCanEdit(false)
     // Animate expanded cells
     for (let node of this.expanded) {
       if (
@@ -56,6 +59,9 @@ export default class BFS extends Algorithm {
             currentNodeInShortestPath.getCellId(),
             ALL_COLOR_MAPPINGS.Path
           );
+          await new Promise((resolve) =>
+            setTimeout(resolve, this.animationDelay)
+          );
         }
 
         var previouslyVisitedCellId =
@@ -70,6 +76,7 @@ export default class BFS extends Algorithm {
       }
     }
     this.setExpanded([]);
+    setCanEdit(true);
   }
 
   insertIntoFrontier(frontier: Node[], node: Node): void {

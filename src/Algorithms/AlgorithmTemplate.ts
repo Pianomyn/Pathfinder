@@ -19,7 +19,7 @@ export default abstract class Algorithm {
   setGraph(graph: Graph) {
     this.graph = graph;
   }
-  //returnShortestPath: () => void;
   abstract findPath(): void;
-  abstract animatePath(): void;
+  // Returns the timeout before board can be edited again
+  abstract animatePath(args: any[]): void;
 }

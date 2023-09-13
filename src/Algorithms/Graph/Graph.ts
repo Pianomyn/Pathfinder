@@ -93,11 +93,24 @@ export default class Graph {
      */
     var updatedCellIds: Set<CellId> = new Set();
 
+    if (
+      clearSourceAndTarget
+    ) {
+      if(this.sourceCellId != null) {
+        updatedCellIds.add(this.sourceCellId);
+        this.sourceCellId = null;
+      }
+      if(this.targetCellId != null) {
+        updatedCellIds.add(this.targetCellId);
+        this.targetCellId = null;
+      }
+    }
+
     for (var r = 0; r < this.height; r++) {
       for (var c = 0; c < this.width; c++) {
         var currentId = createCellId(r, c);
         var currentNode = this.getNode(currentId);
-
+        currentNode.setPreviouslyVisitedCellId(null);
         if (
           clearWallsAndWeights &&
           (currentNode.getIsWeight() || currentNode.getIsWall())
@@ -112,21 +125,15 @@ export default class Graph {
           currentNode.setIsVisited(false);
           updatedCellIds.add(currentId);
         }
-        if (
-          clearSourceAndTarget
-        ) {
-          if(this.sourceCellId != null) {
-            updatedCellIds.add(currentId);
-            this.sourceCellId = null;
-          }
-          else if(this.targetCellId != null) {
-            updatedCellIds.add(currentId);
-            this.targetCellId = null;
-          }
-        }
       }
     }
     return updatedCellIds
+  }
+
+  resetGrid(cellIds: Set<CellId>) {
+    cellIds.forEach(cellId => {
+      this.updateCellColor(cellId, ALL_COLOR_MAPPINGS.Unvisited);
+    })
   }
 
   generateGraph(height: number, width: number): Node[][] {

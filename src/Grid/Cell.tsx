@@ -108,24 +108,10 @@ function Cell({
         }
       }}
       onClick={() => {
-        /*
-        if (JSON.stringify(targetCellId) === JSON.stringify(cellId)) {
-          graph.updateTargetCellId(null);
-          setTargetCellId(null);
-          console.log("reached2")
-        }
-        if (JSON.stringify(sourceCellId) === JSON.stringify(cellId)) {
-          console.log("reached3")
-          graph.updateSourceCellId(null);
-          setSourceCellId(null);
-        }
-        */
-
         if (
           PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
           PLACEABLE_COLOR_MAPPINGS.Source
         ) {
-          console.log("REACHED")
           setCellColor(ALL_COLOR_MAPPINGS.Source)
           setSourceCellId(cellId);
           graph.updateSourceCellId(cellId);

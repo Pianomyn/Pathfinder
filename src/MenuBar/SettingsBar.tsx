@@ -99,7 +99,8 @@ const SettingsBar = ({
               setHeight,
               setHideInputError
             );
-            graph.clearGraph(Object.values(ALL_COLOR_MAPPINGS));
+            let cellIds = graph.resetGraph(true, true, true);
+            graph.resetGrid(cellIds);
           }}
         ></input>
         <input
@@ -113,7 +114,8 @@ const SettingsBar = ({
               setWidth,
               setHideInputError
             );
-            graph.clearGraph(Object.values(ALL_COLOR_MAPPINGS));
+            let cellIds = graph.resetGraph(true, true, true);
+            graph.resetGrid(cellIds);
           }}
         ></input>
       </div>

@@ -74,6 +74,7 @@ export default function App() {
           />
           <PlayBar
             graph={graph}
+            canEdit={canEdit}
             setCanEdit={setCanEdit}
             currentAlgorithm={currentAlgorithm}
           />

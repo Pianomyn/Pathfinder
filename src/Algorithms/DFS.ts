@@ -30,7 +30,7 @@ export default class DFS extends Algorithm {
   random;
   constructor(graph: Graph, random: boolean) {
     super(graph);
-    this.animationDelay = 30;
+    this.animationDelay = 20;
     this.random = random;
   }
   // Setters
@@ -38,7 +38,9 @@ export default class DFS extends Algorithm {
     this.expanded = expanded;
   }
 
-  async animatePath() {
+  async animatePath(args: any[]) {
+    const [setCanEdit] = args;
+    setCanEdit(false)
     // Animate expanded cells
     for (let node of this.expanded) {
       //const nodeCellId = node.getCellId()
@@ -84,6 +86,7 @@ export default class DFS extends Algorithm {
       }
     }
     this.setExpanded([]);
+    setCanEdit(true)
   }
 
   insertIntoFrontier(
