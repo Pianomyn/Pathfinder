@@ -65,7 +65,7 @@ export default function Grid({
       <table
         className="grid hover:cursor-pointer"
         onMouseDown={() => setMouseDown(true)}
-        onMouseUp={() => setMouseDown(false)}
+        onMouseUp={() => {console.log(":LSDJF:SLDKFJS:DLKFJ"); setMouseDown(false)}}
       >
         <tbody>{rows}</tbody>
       </table>
