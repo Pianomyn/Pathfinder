@@ -81,6 +81,7 @@ function Cell({
         cellId === sourceCellId ? PLACEABLE_COLOR_MAPPINGS.Source : ""
       } ${cellId === targetCellId ? PLACEABLE_COLOR_MAPPINGS.Target : ""}`}
       onMouseOver={() => {
+      console.log("ANDI OVER")
         if (
           !(
             mouseDown &&
@@ -117,6 +118,7 @@ function Cell({
         }
       }}
       onClick={() => {
+      console.log("ANDI")
         if (cellIdIsEqual(targetCellId, cellId)) {
           graph.updateTargetCellId(null);
           setTargetCellId(null);
@@ -152,8 +154,10 @@ function Cell({
           console.log(newCellType, PLACEABLE_COLOR_MAPPINGS.Wall)
           setCellColor(newCellType);
           var currentNode = graph.getNode(cellId);
-          if (newCellType == ALL_COLOR_MAPPINGS.Unvisited) {
+          if (newCellType == ALL_COLOR_MAPPINGS.Unvisited || newCellType == ALL_COLOR_MAPPINGS.Wall) {
             currentNode.setIsWall(!currentNode.getIsWall());
+          }
+          if (newCellType == ALL_COLOR_MAPPINGS.Unvisited || newCellType == ALL_COLOR_MAPPINGS.Weight) {
             currentNode.setIsWeight(!currentNode.getIsWeight());
           }
         }
