@@ -85,8 +85,8 @@ const SettingsBar = ({
           <option value="DFS">DFS</option>
           <option value="DFS_RANDOM">DFS Random</option>
           <option disabled>---- Weighted ----</option>
-          <option>Djikstra's Algorithm</option>
-          <option>A*</option>
+          <option>Djikstra's Algorithm (WIP)</option>
+          <option>A* (WIP)</option>
         </select>
         <input
           className="p-2 mx-0.5 w-4/12 border-solid border "
