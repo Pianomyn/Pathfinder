@@ -39,7 +39,6 @@ const PlayBar = ({ graph, canEdit, setCanEdit, currentAlgorithm }: PlayBarProps)
           className="p-2 mx-0.5 border border-solid "
           onClick={() => {
           if(canEdit) {
-            console.log(canEdit)
             let cellIds = graph.resetGraph(true, true, true);
             graph.resetGrid(cellIds);
           }

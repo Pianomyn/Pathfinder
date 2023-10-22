@@ -21,7 +21,6 @@ export default class BFS extends Algorithm {
 
   async animatePath(args: any[]) {
     const [setCanEdit] = args;
-    console.log(setCanEdit, typeof(setCanEdit))
     setCanEdit(false)
     // Animate expanded cells
     for (let node of this.expanded) {
