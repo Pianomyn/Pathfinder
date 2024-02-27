@@ -4,8 +4,9 @@ Deployed version: https://pianomyn.github.io/pathfinder/
 
 <br />
 
-![2024-02-2800-50-58-ezgif com-video-to-gif-converter](https://github.com/Pianomyn/pathfinder/assets/61450295/af2e243f-a1ef-4d1a-972a-9e104fa43788)
 
+
+![second](https://github.com/Pianomyn/pathfinder/assets/61450295/4d0b6138-1711-49db-b268-650123822125)
 
 # Algorithms
 - BFS
