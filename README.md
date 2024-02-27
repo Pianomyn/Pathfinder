@@ -13,4 +13,3 @@ I wanted to keep working on this project after university but I didn't like raw 
 - Djikstra
 - A*
 - IDDFS??
-- 
