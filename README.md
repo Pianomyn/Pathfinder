@@ -3,7 +3,8 @@
 Deployed version: https://pianomyn.github.io/pathfinder/
 
 <br />
-![pathfinder_demo](https://github.com/Pianomyn/pathfinder/assets/61450295/0793e862-1319-43ba-8095-30a0aa2fc8f2)
+
+![2024-02-2800-50-58-ezgif com-video-to-gif-converter](https://github.com/Pianomyn/pathfinder/assets/61450295/af2e243f-a1ef-4d1a-972a-9e104fa43788)
 
 
 # Algorithms
