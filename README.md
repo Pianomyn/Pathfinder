@@ -9,8 +9,13 @@ I wanted to keep working on this project after university but I didn't like raw 
 
 # Algorithms
 - BFS
+    - Unweighted, shortest path algorithm
 - DFS
+    - Unweighted, does not guarantee shortest path
 - Greedy
+    - Unweighted, does not guarantee shortest path
 - Djikstra
+    - Weighted, shortest path algorithm
 - A*
-- IDDFS??
+    - Weighted, shortest path algorithm using heuristics
+
