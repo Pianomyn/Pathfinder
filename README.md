@@ -7,7 +7,7 @@ I wanted to keep working on this project after university but I didn't like raw 
 ## Basic Usage
 ![second](https://github.com/Pianomyn/pathfinder/assets/61450295/4d0b6138-1711-49db-b268-650123822125)
 
-# Algorithms
+## Algorithms
 - BFS
     - Unweighted, shortest path algorithm
 - DFS
