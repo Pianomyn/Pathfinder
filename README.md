@@ -1,5 +1,6 @@
 # Pathfinder - A visualisation of various pathfinding algorithms
 Deployed Webapp: https://pianomyn.github.io/pathfinder/
+<br/>
 I initially built this webapp using Javascript, HTML and CSS when I was at university to help me visualize various pathfinding algorithms.
 I wanted to keep working on this project after university but I didn't like raw Javascript so I started again using React, Typescript and Tailwind CSS.
 
