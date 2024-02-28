@@ -19,3 +19,16 @@ I wanted to keep working on this project after university but I didn't like raw 
 - A*
     - Weighted, shortest path algorithm using heuristics
 
+## Development
+Run the webapp locally
+```bash
+npm i
+npm run tailwind-watch &
+npm run dev
+```
+
+Deploy to production
+```bash
+npm run deploy
+```
+
