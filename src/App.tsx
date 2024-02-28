@@ -69,6 +69,7 @@ export default function App() {
             width={width}
             sourceCellId={sourceCellId}
             targetCellId={targetCellId}
+            currentAlgorithm={currentAlgorithm}
             setCurrentAlgorithm={setCurrentAlgorithm}
             graph={graph}
           />

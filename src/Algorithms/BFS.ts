@@ -9,9 +9,9 @@ import Node from "./Graph/Node";
 import { cellIdIsEqual } from "../Utility/CellId";
 
 export default class BFS extends Algorithm {
-  constructor(graph: Graph) {
+  constructor(graph: Graph, animationDelay: number = 20) {
     super(graph);
-    this.animationDelay = 20;
+    this.animationDelay = animationDelay;
   }
 
   // Setters
@@ -21,7 +21,7 @@ export default class BFS extends Algorithm {
 
   async animatePath(args: any[]) {
     const [setCanEdit] = args;
-    setCanEdit(false)
+    setCanEdit(false);
     // Animate expanded cells
     for (let node of this.expanded) {
       if (
@@ -160,9 +160,9 @@ export default class BFS extends Algorithm {
       // Update neighbours, frontier
       neighbourNodes.forEach((n) => {
         if (
-          !cellIdIsEqual(n.getCellId(), this.graph.getSourceCellId())
-          && !n.getIsWall()
-          && !n.getIsVisited()
+          !cellIdIsEqual(n.getCellId(), this.graph.getSourceCellId()) &&
+          !n.getIsWall() &&
+          !n.getIsVisited()
         ) {
           // @ts-ignore Saying currentNode might be null. Already checked if null
           n.setPreviouslyVisitedCellId(currentNode.getCellId());

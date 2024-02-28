@@ -13,11 +13,14 @@ export default abstract class Algorithm {
   constructor(graph: Graph) {
     this.graph = graph;
     this.expanded = [];
-    this.animationDelay = 3;
+    this.animationDelay = 20;
   }
 
   setGraph(graph: Graph) {
     this.graph = graph;
+  }
+  setAnimationDelay(animationDelay: number) {
+    this.animationDelay = animationDelay;
   }
   abstract findPath(): void;
   // Returns the timeout before board can be edited again

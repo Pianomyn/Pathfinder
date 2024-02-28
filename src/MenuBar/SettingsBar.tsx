@@ -11,6 +11,10 @@ import {
 import { CellId } from "../Utility/types";
 import Algorithm from "../Algorithms/AlgorithmTemplate";
 import Graph from "../Algorithms/Graph/Graph";
+import { useState } from "react";
+
+const ANIMATION_DELAY = 20;
+const ANIMATION_INCREMENT = 20;
 
 function setHeightOrWidth(
   newDimension: string,
@@ -43,6 +47,7 @@ interface SettingsBarProps {
   width: number;
   sourceCellId: CellId | null;
   targetCellId: CellId | null;
+  currentAlgorithm: Algorithm;
   setCurrentAlgorithm: (value: Algorithm) => void; // TODO: fix type later
   graph: Graph;
 }
@@ -56,12 +61,13 @@ const SettingsBar = ({
   width,
   sourceCellId,
   targetCellId,
+  currentAlgorithm,
   setCurrentAlgorithm,
   graph,
 }: SettingsBarProps) => {
-  var bfs = new BFS(graph);
-  var dfs = new DFS(graph, false);
-  var dfs_random = new DFS(graph, true);
+  var bfs = new BFS(graph, ANIMATION_DELAY);
+  var dfs = new DFS(graph, false, ANIMATION_DELAY);
+  var dfs_random = new DFS(graph, true, ANIMATION_DELAY);
 
   type algorithmMappingType = { [key: string]: Algorithm };
   var algorithmMapping: algorithmMappingType = {
@@ -70,6 +76,9 @@ const SettingsBar = ({
     DFS_RANDOM: dfs_random,
   };
 
+  // State
+  const [animationDelay, setAnimationDelay] = useState(ANIMATION_DELAY);
+
   return (
     <div className="flex flex-col items-center mx-2">
       <div className="flex items-center justify-center ">
@@ -77,6 +86,7 @@ const SettingsBar = ({
           className="p-2 mx-0.5 w-4/12 text-center border-solid border"
           onChange={(event) => {
             var algorithmName = event.target.value;
+            algorithmMapping[algorithmName].setAnimationDelay(animationDelay);
             setCurrentAlgorithm(algorithmMapping[algorithmName]);
           }}
         >
@@ -89,7 +99,7 @@ const SettingsBar = ({
           <option>A* (WIP)</option>
         </select>
         <input
-          className="p-2 mx-0.5 w-4/12 border-solid border "
+          className="p-2 mx-0.5 w-2/12 border-solid border "
           type="text"
           placeholder={`Height (${DEFAULT_HEIGHT})`}
           onChange={(e) => {
@@ -104,7 +114,7 @@ const SettingsBar = ({
           }}
         ></input>
         <input
-          className="p-2 mx-0.5 w-4/12 border-solid border "
+          className="p-2 mx-0.5 w-2/12 border-solid border "
           type="text"
           placeholder={`Width (${DEFAULT_WIDTH})`}
           onChange={(e) => {
@@ -118,6 +128,24 @@ const SettingsBar = ({
             graph.resetGrid(cellIds);
           }}
         ></input>
+        <div>
+          <select
+            className="p-2 mx-0.5 w-3/12 text-center border-solid border"
+            onChange={(event) => {
+              var newDelay = Number(event.target.value);
+              setAnimationDelay(newDelay);
+              currentAlgorithm.setAnimationDelay(newDelay);
+            }}
+          >
+            <option value={ANIMATION_DELAY + 2 * ANIMATION_INCREMENT}>
+              Slow
+            </option>
+            <option selected={true} value={ANIMATION_DELAY}>
+              Normal
+            </option>
+            <option value={ANIMATION_DELAY - ANIMATION_INCREMENT}>Fast</option>
+          </select>
+        </div>
       </div>
       {hideInputError ? (
         <></>

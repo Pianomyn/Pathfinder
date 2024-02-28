@@ -1,7 +1,10 @@
-import { ALL_COLOR_MAPPINGS, VISITABLE_COLOR_MAPPINGS } from "../Utility/constants";
+import {
+  ALL_COLOR_MAPPINGS,
+  VISITABLE_COLOR_MAPPINGS,
+} from "../Utility/constants";
 import { cellIdIsEqual } from "../Utility/CellId";
 import Algorithm from "./AlgorithmTemplate";
-import {  CellId } from "../Utility/types";
+import { CellId } from "../Utility/types";
 import Graph from "./Graph/Graph";
 import Node from "./Graph/Node";
 
@@ -28,9 +31,9 @@ function shuffle(array: Array<Node>) {
 
 export default class DFS extends Algorithm {
   random;
-  constructor(graph: Graph, random: boolean) {
+  constructor(graph: Graph, random: boolean, animationDelay: number = 20) {
     super(graph);
-    this.animationDelay = 20;
+    this.animationDelay = animationDelay;
     this.random = random;
   }
   // Setters
@@ -40,15 +43,18 @@ export default class DFS extends Algorithm {
 
   async animatePath(args: any[]) {
     const [setCanEdit] = args;
-    setCanEdit(false)
+    setCanEdit(false);
     // Animate expanded cells
     for (let node of this.expanded) {
       //const nodeCellId = node.getCellId()
       if (
-        !cellIdIsEqual(node.getCellId(), this.graph.getSourceCellId())
-        && !cellIdIsEqual(node.getCellId(), this.graph.getTargetCellId())
+        !cellIdIsEqual(node.getCellId(), this.graph.getSourceCellId()) &&
+        !cellIdIsEqual(node.getCellId(), this.graph.getTargetCellId())
       ) {
-        this.graph.updateCellColor(node.getCellId(), ALL_COLOR_MAPPINGS.Visited);
+        this.graph.updateCellColor(
+          node.getCellId(),
+          ALL_COLOR_MAPPINGS.Visited
+        );
         await new Promise((resolve) =>
           setTimeout(resolve, this.animationDelay)
         );
@@ -62,8 +68,14 @@ export default class DFS extends Algorithm {
         this.graph.getNode(targetCellId);
       while (currentNodeInShortestPath) {
         if (
-        !cellIdIsEqual(currentNodeInShortestPath.getCellId(), this.graph.getSourceCellId())
-        && !cellIdIsEqual(currentNodeInShortestPath.getCellId(), this.graph.getTargetCellId())
+          !cellIdIsEqual(
+            currentNodeInShortestPath.getCellId(),
+            this.graph.getSourceCellId()
+          ) &&
+          !cellIdIsEqual(
+            currentNodeInShortestPath.getCellId(),
+            this.graph.getTargetCellId()
+          )
         ) {
           this.graph.updateCellColor(
             currentNodeInShortestPath.getCellId(),
@@ -86,22 +98,17 @@ export default class DFS extends Algorithm {
       }
     }
     this.setExpanded([]);
-    setCanEdit(true)
+    setCanEdit(true);
   }
 
-  insertIntoFrontier(
-    frontier: Node[],
-    node: Node
-  ): void {
+  insertIntoFrontier(frontier: Node[], node: Node): void {
     /*
      * Insert the node into the 'frontier' array.
      * */
     frontier.unshift(node);
   }
 
-  popFromFrontier(
-    frontier: Node[],
-  ): Node | null {
+  popFromFrontier(frontier: Node[]): Node | null {
     var nodeToReturn = frontier.shift();
     if (!nodeToReturn) return null;
 
@@ -157,10 +164,7 @@ export default class DFS extends Algorithm {
 
     var expanded: Node[] = [];
     var frontier: Node[] = [];
-    this.insertIntoFrontier(
-      frontier,
-      this.graph.getNode(sourceCellId)
-    );
+    this.insertIntoFrontier(frontier, this.graph.getNode(sourceCellId));
 
     while (frontier.length > 0) {
       // Pop from frontier and mark as visited
@@ -170,7 +174,9 @@ export default class DFS extends Algorithm {
       // Insert into expanded
       expanded.push(currentNode);
       // Check if popped node is target
-      if (cellIdIsEqual(currentNode.getCellId(), this.graph.getTargetCellId())) {
+      if (
+        cellIdIsEqual(currentNode.getCellId(), this.graph.getTargetCellId())
+      ) {
         break;
       }
 
@@ -180,21 +186,20 @@ export default class DFS extends Algorithm {
       var currentY = currentNode.getCellY();
       var currentX = currentNode.getCellX();
 
-      var neighbourNodes = 
-        this.getNeighbours(
-          this.graph,
-          currentY,
-          currentX,
-          graphHeight,
-          graphWidth
+      var neighbourNodes = this.getNeighbours(
+        this.graph,
+        currentY,
+        currentX,
+        graphHeight,
+        graphWidth
       );
-      if (this.random) neighbourNodes = shuffle(neighbourNodes)
+      if (this.random) neighbourNodes = shuffle(neighbourNodes);
 
       neighbourNodes.forEach((n) => {
         if (
-          !cellIdIsEqual(n.getCellId(), this.graph.getSourceCellId())
-          && !n.getIsWall()
-          && !n.getIsVisited()
+          !cellIdIsEqual(n.getCellId(), this.graph.getSourceCellId()) &&
+          !n.getIsWall() &&
+          !n.getIsVisited()
         ) {
           // @ts-ignore Saying currentNode might be null. Already checked if null
           n.setPreviouslyVisitedCellId(currentNode.getCellId());
@@ -207,4 +212,3 @@ export default class DFS extends Algorithm {
     this.setExpanded(expanded);
   }
 }
-
