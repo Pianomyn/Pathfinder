@@ -83,7 +83,7 @@ const SettingsBar = ({
     <div className="flex flex-col items-center mx-2">
       <div className="flex items-center justify-center ">
         <select
-          className="p-2 mx-0.5 w-4/12 text-center border-solid border"
+          className="p-2 mx-0.5 w-3/12 text-center border-solid border"
           onChange={(event) => {
             var algorithmName = event.target.value;
             algorithmMapping[algorithmName].setAnimationDelay(animationDelay);
@@ -99,7 +99,7 @@ const SettingsBar = ({
           <option>A* (WIP)</option>
         </select>
         <input
-          className="p-2 mx-0.5 w-2/12 border-solid border "
+          className="p-2 mx-0.5 w-3/12 border-solid border "
           type="text"
           placeholder={`Height (${DEFAULT_HEIGHT})`}
           onChange={(e) => {
@@ -114,7 +114,7 @@ const SettingsBar = ({
           }}
         ></input>
         <input
-          className="p-2 mx-0.5 w-2/12 border-solid border "
+          className="p-2 mx-0.5 w-3/12 border-solid border "
           type="text"
           placeholder={`Width (${DEFAULT_WIDTH})`}
           onChange={(e) => {
@@ -128,24 +128,22 @@ const SettingsBar = ({
             graph.resetGrid(cellIds);
           }}
         ></input>
-        <div>
-          <select
-            className="p-2 mx-0.5 w-3/12 text-center border-solid border"
-            onChange={(event) => {
-              var newDelay = Number(event.target.value);
-              setAnimationDelay(newDelay);
-              currentAlgorithm.setAnimationDelay(newDelay);
-            }}
-          >
-            <option value={ANIMATION_DELAY + 2 * ANIMATION_INCREMENT}>
-              Slow
-            </option>
-            <option selected={true} value={ANIMATION_DELAY}>
-              Normal
-            </option>
-            <option value={ANIMATION_DELAY - ANIMATION_INCREMENT}>Fast</option>
-          </select>
-        </div>
+        <select
+          className="p-2 mx-0.5 w-3/12 text-center border-solid border"
+          onChange={(event) => {
+            var newDelay = Number(event.target.value);
+            setAnimationDelay(newDelay);
+            currentAlgorithm.setAnimationDelay(newDelay);
+          }}
+        >
+          <option value={ANIMATION_DELAY + 2 * ANIMATION_INCREMENT}>
+            Slow
+          </option>
+          <option selected={true} value={ANIMATION_DELAY}>
+            Normal
+          </option>
+          <option value={ANIMATION_DELAY - ANIMATION_INCREMENT}>Fast</option>
+        </select>
       </div>
       {hideInputError ? (
         <></>
