@@ -12,6 +12,7 @@ import { CellId } from "../Utility/types";
 import Algorithm from "../Algorithms/AlgorithmTemplate";
 import Graph from "../Algorithms/Graph/Graph";
 import { useState } from "react";
+import GreedyHeuristic from "../Algorithms/GreedyHeuristic";
 
 const ANIMATION_DELAY = 20;
 const ANIMATION_INCREMENT = 20;
@@ -68,12 +69,14 @@ const SettingsBar = ({
   var bfs = new BFS(graph, ANIMATION_DELAY);
   var dfs = new DFS(graph, false, ANIMATION_DELAY);
   var dfs_random = new DFS(graph, true, ANIMATION_DELAY);
+  var greedy_heuristic = new GreedyHeuristic(graph, ANIMATION_DELAY);
 
   type algorithmMappingType = { [key: string]: Algorithm };
   var algorithmMapping: algorithmMappingType = {
     BFS: bfs,
     DFS: dfs,
     DFS_RANDOM: dfs_random,
+    GREEDY_HEURISTIC: greedy_heuristic,
   };
 
   // State
@@ -94,6 +97,7 @@ const SettingsBar = ({
           <option value="BFS">BFS</option>
           <option value="DFS">DFS</option>
           <option value="DFS_RANDOM">DFS Random</option>
+          <option value="GREEDY_HEURISTIC">Greedy Heuristic</option>
           <option disabled>---- Weighted ----</option>
           <option>Djikstra's Algorithm (WIP)</option>
           <option>A* (WIP)</option>

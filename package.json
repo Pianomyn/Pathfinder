@@ -13,6 +13,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "heap-js": "^2.3.0",
+    "pathfinder": "^0.3.0-1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

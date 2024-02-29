@@ -10,14 +10,20 @@ I wanted to keep working on this project after university but I didn't like raw 
 ## Algorithms
 - BFS
     - Unweighted, shortest path algorithm
+    - Explores the grid layer by layer
 - DFS
     - Unweighted, does not guarantee shortest path
-- Greedy
+    - Move to unvisited nodes randomly
+- Greedy Heuristic
     - Unweighted, does not guarantee shortest path
+    - Makes locally optimal decisions based on a heuristic - in this case, Manhattan Distance (abs(target.x - current.x) + abs(target.y - current.x)). Generally good for highly connected graphs but can run into issues with walls/barriers.
 - Djikstra
     - Weighted, shortest path algorithm
+    - Also a "greedy" algorithm. Uses a priority queue (min heap) to always visit
+    the min weight edge currently bordering the frontier. Guarantees shortest path from a source to all connected nodes in the graph.
 - A*
-    - Weighted, shortest path algorithm using heuristics
+    - Weighted, shortest path algorithm
+    - Best weighted pathfinding algorithm. Makes use of a min heap as well but the priority is determined by both weight and heuristic. Can think of it as an "informed Djikstra's" that can be expected to find the target faster than Djikstra's.
 
 ## Development
 Run the webapp locally

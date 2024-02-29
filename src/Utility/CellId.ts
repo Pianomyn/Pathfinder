@@ -10,3 +10,7 @@ export function cellIdIsEqual(first: CellId | null, second: CellId | null): bool
   }
   return first.y == second.y && first.x === second.x;
 }
+
+export function convertCellIdToString(cellId: CellId) {
+  return `${cellId.y}-${cellId.x}`
+}
