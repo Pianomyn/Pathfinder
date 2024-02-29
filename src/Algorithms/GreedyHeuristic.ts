@@ -115,18 +115,11 @@ export default class GreedyHeuristic extends Algorithm {
 
       // Add node neighbours
       this.getNeighbours(currCoords).forEach((neighbour) => {
-        if(targetCellId === null)  return  // Not sure why TS Compiler needs this.
+        if (targetCellId === null) return; // Not sure why TS interpreter needs this.
         const newCost =
           Math.abs(targetCellId.y - neighbour.y) +
           Math.abs(targetCellId.x - neighbour.x);
         this.minHeap.push([newCost, neighbour]);
-        if (currCoords.y == 19 && currCoords.x == 39) {
-          console.log(newCost, neighbour, this.minHeap.peek());
-          if (neighbour.y == 19 && neighbour.x == 40) {
-            let a = this.minHeap.toArray();
-            console.log(a);
-          }
-        }
         this.graph.getNode(neighbour).setIsVisited(true);
         this.graph.getNode(neighbour).setPreviouslyVisitedCellId(currCoords);
       });
