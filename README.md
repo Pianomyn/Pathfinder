@@ -23,7 +23,7 @@ Try it out here: https://pianomyn.github.io/pathfinder/
     the min weight edge currently bordering the frontier. Guarantees shortest path from a source to all connected nodes in the graph.
 - A*
     - Weighted, shortest path algorithm
-    - Best weighted pathfinding algorithm. Makes use of a min heap as well but the priority is determined by both weight + heuristic. Can think of it as an "informed Djikstra's" that can be expected to find the target faster than Djikstra's.
+    - Best weighted pathfinding algorithm. Makes use of a min heap as well but the priority is determined by weight + heuristic. Can think of it as an "informed Djikstra's" that can be expected to find the target faster than Djikstra's.
 
 ## Development
 Run the webapp locally
