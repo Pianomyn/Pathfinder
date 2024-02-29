@@ -73,14 +73,12 @@ export default class GreedyHeuristic extends Algorithm {
           currentNodeInShortestPath = this.graph.getNode(
             previouslyVisitedCellId
           );
-          console.log(currentNodeInShortestPath.getCellId());
         } else {
           currentNodeInShortestPath = null;
         }
       }
     }
     this.expanded = [];
-    console.log("SETTING CAN EDIT TO TRUE");
     setCanEdit(true);
   }
 
