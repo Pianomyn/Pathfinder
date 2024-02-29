@@ -115,6 +115,7 @@ export default class GreedyHeuristic extends Algorithm {
 
       // Add node neighbours
       this.getNeighbours(currCoords).forEach((neighbour) => {
+        if(targetCellId === null)  return  // Not sure why TS Compiler needs this.
         const newCost =
           Math.abs(targetCellId.y - neighbour.y) +
           Math.abs(targetCellId.x - neighbour.x);
