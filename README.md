@@ -5,7 +5,7 @@ I wanted to keep working on this project after university but I didn't like raw 
 Try it out here: https://pianomyn.github.io/pathfinder/
 
 ## Basic Usage
-![second](https://github.com/Pianomyn/pathfinder/assets/61450295/4d0b6138-1711-49db-b268-650123822125)
+![path_01_03](https://github.com/Pianomyn/pathfinder/assets/61450295/2f35a55d-aaad-4c3a-a309-b31ec5030bbe)
 
 ## Algorithms
 - BFS
