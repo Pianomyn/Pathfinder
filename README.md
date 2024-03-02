@@ -7,7 +7,7 @@ In addition to this basic problem statement, there are 2 additional variables
   - Only Weighted algorithms will take weights into account.
 - Wall: These points are impassable.
   <br/>
-  Try it out here: https://pianomyn.github.io/pathfinder/
+Try it out here: https://pianomyn.github.io/pathfinder/
 
 ## Unweighted Usage
 
