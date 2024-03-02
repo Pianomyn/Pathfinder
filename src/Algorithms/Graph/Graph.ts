@@ -94,13 +94,13 @@ export default class Graph {
     if (clearSourceAndTarget) {
       if (this.sourceCellId != null) {
         this.updateCellColor(this.sourceCellId, ALL_COLOR_MAPPINGS.Unvisited);
-        this.getNode(this.sourceCellId).setIsVisited(false)
-        this.getNode(this.sourceCellId).setPreviouslyVisitedCellId(null)
+        this.getNode(this.sourceCellId).setIsVisited(false);
+        this.getNode(this.sourceCellId).setPreviouslyVisitedCellId(null);
       }
       if (this.targetCellId != null) {
         this.updateCellColor(this.targetCellId, ALL_COLOR_MAPPINGS.Unvisited);
-        this.getNode(this.targetCellId).setIsVisited(false)
-        this.getNode(this.targetCellId).setPreviouslyVisitedCellId(null)
+        this.getNode(this.targetCellId).setIsVisited(false);
+        this.getNode(this.targetCellId).setPreviouslyVisitedCellId(null);
       }
       this.setSourceCellId(null);
       this.setTargetCellId(null);
@@ -111,6 +111,19 @@ export default class Graph {
         var currentId = createCellId(r, c);
         var currentNode = this.getNode(currentId);
         currentNode.setPreviouslyVisitedCellId(null);
+        if (
+          this.sourceCellId != null &&
+          cellIdIsEqual(currentNode.getCellId(), this.sourceCellId)
+        ) {
+          this.getNode(this.sourceCellId).setIsVisited(false);
+          this.getNode(this.sourceCellId).setPreviouslyVisitedCellId(null);
+        } else if (
+          this.targetCellId != null &&
+          cellIdIsEqual(currentNode.getCellId(), this.targetCellId)
+        ) {
+          this.getNode(this.targetCellId).setIsVisited(false);
+          this.getNode(this.targetCellId).setPreviouslyVisitedCellId(null);
+        }
         if (
           clearWallsAndWeights &&
           (currentNode.getIsWeight() || currentNode.getIsWall())
@@ -125,12 +138,6 @@ export default class Graph {
             currentNode.setPreviouslyVisitedCellId(null);
             this.updateCellColor(currentId, ALL_COLOR_MAPPINGS.Weight);
           } else if (currentNode.getIsWall()) {
-          } else if (
-            cellIdIsEqual(currentNode.getCellId(), this.sourceCellId)
-          ) {
-          } else if (
-            cellIdIsEqual(currentNode.getCellId(), this.targetCellId)
-          ) {
           } else {
             currentNode.setIsVisited(false);
             currentNode.setPreviouslyVisitedCellId(null);
