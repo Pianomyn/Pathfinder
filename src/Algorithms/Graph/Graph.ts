@@ -102,8 +102,10 @@ export default class Graph {
         this.getNode(this.targetCellId).setIsVisited(false);
         this.getNode(this.targetCellId).setPreviouslyVisitedCellId(null);
       }
-      this.setSourceCellId(null);
-      this.setTargetCellId(null);
+      //this.setSourceCellId(null);
+      //this.setTargetCellId(null);
+      this.sourceCellId = null;
+      this.targetCellId = null;
     }
 
     for (var r = 0; r < this.height; r++) {
@@ -138,6 +140,11 @@ export default class Graph {
             currentNode.setPreviouslyVisitedCellId(null);
             this.updateCellColor(currentId, ALL_COLOR_MAPPINGS.Weight);
           } else if (currentNode.getIsWall()) {
+          }
+          if (cellIdIsEqual(currentNode.getCellId(), this.sourceCellId)) {
+          } else if (
+            cellIdIsEqual(currentNode.getCellId(), this.targetCellId)
+          ) {
           } else {
             currentNode.setIsVisited(false);
             currentNode.setPreviouslyVisitedCellId(null);
