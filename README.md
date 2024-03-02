@@ -9,11 +9,16 @@ In addition to this basic problem statement, there are 2 additional variables
   <br/>
 Try it out here: https://pianomyn.github.io/pathfinder/
 
-## Unweighted Usage
+## Usage
+From left to right
+- Algorithm drop down: Select the algorithm you want to visualise
+- Height: Select the height of the grid (20 by default)
+
+## Unweighted algorithm example
 
 ![path_01_03](https://github.com/Pianomyn/pathfinder/assets/61450295/2f35a55d-aaad-4c3a-a309-b31ec5030bbe)
 
-## Weighted Usage
+## Weighted algorithm example
 
 ## Algorithms
 
