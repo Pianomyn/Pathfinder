@@ -14,7 +14,7 @@ From left to right
 - Algorithm drop down: Select the algorithm you want to visualise
 - Height: Input the height of the grid (20 by default)
 - Width: Input the width of the grid (20 by default)
-- Weight: Input the value of a Weight. Only affects weighted algorithms
+- Weight: Input the value of a Weight (10 by default). Only affects weighted algorithms
 - Start: Visualise the currently selected algorithm
 - Reset all: Clear the grid
 - Reset path: Resets the currently explored path (blue and yellow cells)
