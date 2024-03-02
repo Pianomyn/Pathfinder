@@ -5,7 +5,9 @@ import BFS from "../Algorithms/BFS";
 import DFS from "../Algorithms/DFS";
 import {
   ALL_COLOR_MAPPINGS,
+  COLOR_WEIGHT_MAPPINGS,
   DEFAULT_HEIGHT,
+  DEFAULT_WEIGHT,
   DEFAULT_WIDTH,
 } from "../Utility/constants";
 import { CellId } from "../Utility/types";
@@ -34,6 +36,25 @@ function setHeightOrWidth(
       setHideError(false);
     } else {
       setDimension(newDimensionInt);
+      setHideError(true);
+    }
+  } else {
+    setHideError(false);
+  }
+}
+
+function setWeightValue(
+  newDimension: string,
+  setHideError: (value: boolean) => void
+) {
+  if (!newDimension) {
+    setHideError(true);
+  } else if (newDimension.match(/^[1-9][0-9]*$/)) {
+    const newDimensionInt = parseInt(newDimension);
+    if (newDimensionInt > 100) {
+      setHideError(false);
+    } else {
+      COLOR_WEIGHT_MAPPINGS.Weight = newDimensionInt
       setHideError(true);
     }
   } else {
@@ -109,7 +130,7 @@ const SettingsBar = ({
           <option value="A_STAR">A*</option>
         </select>
         <input
-          className="p-2 mx-0.5 w-3/12 border-solid border "
+          className="p-2 mx-0.5 w-2/12 border-solid border "
           type="text"
           placeholder={`Height (${DEFAULT_HEIGHT})`}
           onChange={(e) => {
@@ -124,7 +145,7 @@ const SettingsBar = ({
           }}
         ></input>
         <input
-          className="p-2 mx-0.5 w-3/12 border-solid border "
+          className="p-2 mx-0.5 w-2/12 border-solid border "
           type="text"
           placeholder={`Width (${DEFAULT_WIDTH})`}
           onChange={(e) => {
@@ -136,6 +157,17 @@ const SettingsBar = ({
             );
             let cellIds = graph.resetGraph(true, true, true);
             graph.resetGrid(cellIds);
+          }}
+        ></input>
+        <input
+          className="p-2 mx-0.5 w-2/12 border-solid border "
+          type="text"
+          placeholder={`Weight (${DEFAULT_WEIGHT})`}
+          onChange={(e) => {
+            setWeightValue(
+              e.target.value,
+              setHideInputError
+            );
           }}
         ></input>
         <select
