@@ -39,7 +39,8 @@ UI Usage from left to right (Please see Gifs below if unclear)
   - Move to unvisited nodes randomly
 - Greedy Heuristic
   - Unweighted, does not guarantee shortest path
-  - Makes locally optimal decisions based on a heuristic - in this case, $Manhattan\ Distance=| \text{target.x} - \text{current.x} | + | \text{target.y} - \text{current.y} |$
+  - Makes locally optimal decisions based on a heuristic - in this case, we are using Manhattan Distance.
+  - $Manhattan\ Distance=| \text{target.x} - \text{current.x} | + | \text{target.y} - \text{current.y} |$
   . Generally good for highly connected graphs but can run into issues with walls/barriers.
 
 
