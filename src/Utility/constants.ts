@@ -35,6 +35,10 @@ export const EXPLORED_COLOR_MAPPINGS = {
   Path: ALL_COLOR_MAPPINGS.Path,
 }
 
+export var COLOR_WEIGHT_MAPPINGS = {
+  Unvisited: 1,
+  Weight: 100,
+}
 
 /*
 export const ObstacleColorMappings = {
@@ -42,3 +46,4 @@ export const ObstacleColorMappings = {
   Wall: ALL_COLOR_MAPPINGS.Visited,
 };
 */
+

@@ -13,6 +13,8 @@ import Algorithm from "../Algorithms/AlgorithmTemplate";
 import Graph from "../Algorithms/Graph/Graph";
 import { useState } from "react";
 import GreedyHeuristic from "../Algorithms/GreedyHeuristic";
+import Djikstras from "../Algorithms/Djikstras";
+import AStar from "../Algorithms/AStar";
 
 const ANIMATION_DELAY = 20;
 const ANIMATION_INCREMENT = 20;
@@ -70,6 +72,8 @@ const SettingsBar = ({
   var dfs = new DFS(graph, false, ANIMATION_DELAY);
   var dfs_random = new DFS(graph, true, ANIMATION_DELAY);
   var greedy_heuristic = new GreedyHeuristic(graph, ANIMATION_DELAY);
+  var djikstras = new Djikstras(graph, ANIMATION_DELAY);
+  var a_star = new AStar(graph, ANIMATION_DELAY)
 
   type algorithmMappingType = { [key: string]: Algorithm };
   var algorithmMapping: algorithmMappingType = {
@@ -77,6 +81,8 @@ const SettingsBar = ({
     DFS: dfs,
     DFS_RANDOM: dfs_random,
     GREEDY_HEURISTIC: greedy_heuristic,
+    DJIKSTRAS: djikstras,
+    A_STAR: a_star,
   };
 
   // State
@@ -99,8 +105,8 @@ const SettingsBar = ({
           <option value="DFS_RANDOM">DFS Random</option>
           <option value="GREEDY_HEURISTIC">Greedy Heuristic</option>
           <option disabled>---- Weighted ----</option>
-          <option>Djikstra's Algorithm (WIP)</option>
-          <option>A* (WIP)</option>
+          <option value="DJIKSTRAS">Djikstra's Algorithm</option>
+          <option value="A_STAR">A*</option>
         </select>
         <input
           className="p-2 mx-0.5 w-3/12 border-solid border "
