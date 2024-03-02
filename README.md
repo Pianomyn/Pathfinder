@@ -42,12 +42,9 @@ UI Usage from left to right (Please see Gifs below if unclear)
   - Makes locally optimal decisions based on a heuristic - for this project, I am using Manhattan Distance.
   - $Manhattan\ Distance=| \text{target.x} - \text{current.x} | + | \text{target.y} - \text{current.y} |$
   - Generally good for highly connected graphs but can run into issues with walls/barriers.
-
-
 - Djikstra's
   - Weighted, shortest path algorithm
-  - Also a "greedy" algorithm. Uses a priority queue (min heap) to ensure it is visiting
-    the min weight edge currently bordering the frontier. Guarantees shortest path from a source to all connected nodes in the graph.
+  - Also a "greedy" algorithm. Uses a priority queue (min heap) to ensure it is visiting the min weight edge currently bordering the frontier. Guarantees shortest path from a source to all connected nodes in the graph.
 - A\*
   - Weighted, shortest path algorithm
   - Best weighted pathfinding algorithm. Makes use of a min heap as well but the priority is determined by weight + heuristic. Can think of it as an "informed Djikstra's" that can be expected to find the target faster than Djikstra's.
