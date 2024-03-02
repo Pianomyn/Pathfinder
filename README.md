@@ -12,11 +12,17 @@ Try it out here: https://pianomyn.github.io/pathfinder/
 ## Usage
 From left to right
 - Algorithm drop down: Select the algorithm you want to visualise
-- Height: Select the height of the grid (20 by default)
+- Height: Input the height of the grid (20 by default)
+- Width: Input the width of the grid (20 by default)
+- Weight: Input the value of a Weight. Only affects weighted algorithms
+- Start: Visualise the currently selected algorithm
+- Reset all: Clear the grid
+- Reset path: Resets the currently explored path (blue and yellow cells)
+- Placeable Cells: Click to place, click again to remove. Weights and Walls can also be placed by holding mouse 1 and dragging
+
+## Configuration example
 
 ## Unweighted algorithm example
-
-![path_01_03](https://github.com/Pianomyn/pathfinder/assets/61450295/2f35a55d-aaad-4c3a-a309-b31ec5030bbe)
 
 ## Weighted algorithm example
 
