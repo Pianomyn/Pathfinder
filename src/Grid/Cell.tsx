@@ -153,9 +153,11 @@ function Cell({
           var currentNode = graph.getNode(cellId);
           if (newCellType == ALL_COLOR_MAPPINGS.Unvisited || newCellType == ALL_COLOR_MAPPINGS.Wall) {
             currentNode.setIsWall(!currentNode.getIsWall());
+            currentNode.setIsWeight(false)
           }
           if (newCellType == ALL_COLOR_MAPPINGS.Unvisited || newCellType == ALL_COLOR_MAPPINGS.Weight) {
             currentNode.setIsWeight(!currentNode.getIsWeight());
+            currentNode.setIsWall(false)
           }
         }
       }}

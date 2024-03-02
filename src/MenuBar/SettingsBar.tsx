@@ -54,7 +54,7 @@ function setWeightValue(
     if (newDimensionInt > 100) {
       setHideError(false);
     } else {
-      COLOR_WEIGHT_MAPPINGS.Weight = newDimensionInt
+      COLOR_WEIGHT_MAPPINGS.Weight = newDimensionInt;
       setHideError(true);
     }
   } else {
@@ -94,7 +94,7 @@ const SettingsBar = ({
   var dfs_random = new DFS(graph, true, ANIMATION_DELAY);
   var greedy_heuristic = new GreedyHeuristic(graph, ANIMATION_DELAY);
   var djikstras = new Djikstras(graph, ANIMATION_DELAY);
-  var a_star = new AStar(graph, ANIMATION_DELAY)
+  var a_star = new AStar(graph, ANIMATION_DELAY);
 
   type algorithmMappingType = { [key: string]: Algorithm };
   var algorithmMapping: algorithmMappingType = {
@@ -140,8 +140,7 @@ const SettingsBar = ({
               setHeight,
               setHideInputError
             );
-            let cellIds = graph.resetGraph(true, true, true);
-            graph.resetGrid(cellIds);
+            graph.resetGraph(true, true, true);
           }}
         ></input>
         <input
@@ -155,8 +154,7 @@ const SettingsBar = ({
               setWidth,
               setHideInputError
             );
-            let cellIds = graph.resetGraph(true, true, true);
-            graph.resetGrid(cellIds);
+            graph.resetGraph(true, true, true);
           }}
         ></input>
         <input
@@ -164,10 +162,7 @@ const SettingsBar = ({
           type="text"
           placeholder={`Weight (${DEFAULT_WEIGHT})`}
           onChange={(e) => {
-            setWeightValue(
-              e.target.value,
-              setHideInputError
-            );
+            setWeightValue(e.target.value, setHideInputError);
           }}
         ></input>
         <select

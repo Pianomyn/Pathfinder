@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { createCellId } from "../../Utility/CellId";
+import { createCellId, cellIdIsEqual } from "../../Utility/CellId";
 import { ALL_COLOR_MAPPINGS } from "../../Utility/constants";
 import { ALL_COLOR_MAPPINGS_TYPE, CellId } from "../../Utility/types";
 import Node from "./Node";
@@ -85,25 +85,21 @@ export default class Graph {
     clearWallsAndWeights: boolean,
     clearPath: boolean,
     clearSourceAndTarget: boolean
-  ): Set<CellId> {
+  ) {
     /*
      * Resets any nodes that match the filter parameters.
      *
      * Returns all CellIds that were reset.
      */
-    var updatedCellIds: Set<CellId> = new Set();
-
-    if (
-      clearSourceAndTarget
-    ) {
-      if(this.sourceCellId != null) {
-        updatedCellIds.add(this.sourceCellId);
-        this.sourceCellId = null;
+    if (clearSourceAndTarget) {
+      if (this.sourceCellId != null) {
+        this.updateCellColor(this.sourceCellId, ALL_COLOR_MAPPINGS.Unvisited);
       }
-      if(this.targetCellId != null) {
-        updatedCellIds.add(this.targetCellId);
-        this.targetCellId = null;
+      if (this.targetCellId != null) {
+        this.updateCellColor(this.targetCellId, ALL_COLOR_MAPPINGS.Unvisited);
       }
+      this.setSourceCellId(null);
+      this.setTargetCellId(null);
     }
 
     for (var r = 0; r < this.height; r++) {
@@ -117,25 +113,28 @@ export default class Graph {
         ) {
           currentNode.setIsWeight(false);
           currentNode.setIsWall(false);
-          updatedCellIds.add(currentId);
+          this.updateCellColor(currentId, ALL_COLOR_MAPPINGS.Unvisited);
         }
-        if (
-          clearPath && currentNode.getIsVisited()
-        ) {
-          currentNode.setIsVisited(false);
-          updatedCellIds.add(currentId);
+        if (clearPath) {
+          if (currentNode.getIsWeight()) {
+            currentNode.setIsVisited(false);
+            currentNode.setPreviouslyVisitedCellId(null);
+            this.updateCellColor(currentId, ALL_COLOR_MAPPINGS.Weight);
+          } else if (currentNode.getIsWall()) {
+          } else if (
+            cellIdIsEqual(currentNode.getCellId(), this.sourceCellId)
+          ) {
+          } else if (
+            cellIdIsEqual(currentNode.getCellId(), this.targetCellId)
+          ) {
+          } else {
+            currentNode.setIsVisited(false);
+            currentNode.setPreviouslyVisitedCellId(null);
+            this.updateCellColor(currentId, ALL_COLOR_MAPPINGS.Unvisited);
+          }
         }
       }
     }
-    return updatedCellIds
-  }
-
-  resetGrid(cellIds: Set<CellId>) {
-    cellIds.forEach(cellId => {
-      this.updateCellColor(cellId, ALL_COLOR_MAPPINGS.Unvisited);
-    })
-    this.setSourceCellId(null)
-    this.setTargetCellId(null)
   }
 
   generateGraph(height: number, width: number): Node[][] {

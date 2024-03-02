@@ -39,12 +39,21 @@ const PlayBar = ({ graph, canEdit, setCanEdit, currentAlgorithm }: PlayBarProps)
           className="p-2 mx-0.5 border border-solid "
           onClick={() => {
           if(canEdit) {
-            let cellIds = graph.resetGraph(true, true, true);
-            graph.resetGrid(cellIds);
+            graph.resetGraph(true, true, true);
           }
           }}
         >
           Reset all
+        </button>
+        <button
+          className="p-2 mx-0.5 border border-solid "
+          onClick={() => {
+          if(canEdit) {
+            graph.resetGraph(false, true, false)
+          }
+          }}
+        >
+          Reset path
         </button>
       </div>
     </div>
