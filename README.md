@@ -21,10 +21,13 @@ From left to right
 - Placeable Cells: Click to place, click again to remove. Weights and Walls can also be placed by holding mouse 1 and dragging
 
 ## Configuration example
+![config](https://github.com/Pianomyn/pathfinder/assets/61450295/fe4a43e2-a1b7-4e7f-b175-963048e2a7f1)
 
 ## Unweighted algorithm example
+![unweighted](https://github.com/Pianomyn/pathfinder/assets/61450295/b5cdf9b6-267d-48a6-a858-8ed9fa60f1df)
 
 ## Weighted algorithm example
+![weighted](https://github.com/Pianomyn/pathfinder/assets/61450295/2c76ae98-d0dc-4747-8fc6-87233f0636a8)
 
 ## Algorithms
 
