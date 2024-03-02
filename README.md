@@ -10,7 +10,7 @@ In addition to this basic problem statement, there are 2 additional variables
 Try it out here: https://pianomyn.github.io/pathfinder/
 
 ## Usage
-From left to right
+UI Usage from left to right (Please see Gifs below if unclear)
 - Algorithm drop down: Select the algorithm you want to visualise
 - Height: Input the height of the grid (20 by default)
 - Width: Input the width of the grid (20 by default)
