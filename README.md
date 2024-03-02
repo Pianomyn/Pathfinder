@@ -6,7 +6,7 @@ In addition to this basic problem statement, there are 2 additional variables
 - Weight: These points are more "costly" to traverse.
   - Only Weighted algorithms will take weights into account.
 - Wall: These points are impassable.
-  <br/>
+<br/>
 Try it out here: https://pianomyn.github.io/pathfinder/
 
 ## Usage
