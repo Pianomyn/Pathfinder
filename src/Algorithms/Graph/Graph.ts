@@ -94,9 +94,13 @@ export default class Graph {
     if (clearSourceAndTarget) {
       if (this.sourceCellId != null) {
         this.updateCellColor(this.sourceCellId, ALL_COLOR_MAPPINGS.Unvisited);
+        this.getNode(this.sourceCellId).setIsVisited(false)
+        this.getNode(this.sourceCellId).setPreviouslyVisitedCellId(null)
       }
       if (this.targetCellId != null) {
         this.updateCellColor(this.targetCellId, ALL_COLOR_MAPPINGS.Unvisited);
+        this.getNode(this.targetCellId).setIsVisited(false)
+        this.getNode(this.targetCellId).setPreviouslyVisitedCellId(null)
       }
       this.setSourceCellId(null);
       this.setTargetCellId(null);
