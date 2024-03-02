@@ -36,6 +36,9 @@ export default class DFS extends Algorithm {
     this.animationDelay = animationDelay;
     this.random = random;
   }
+
+  reset() {}
+
   // Setters
   setExpanded(expanded: Node[]) {
     this.expanded = expanded;

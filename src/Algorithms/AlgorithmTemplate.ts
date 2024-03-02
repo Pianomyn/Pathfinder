@@ -1,6 +1,5 @@
 import { cellIdIsEqual } from "../Utility/CellId";
 import { ALL_COLOR_MAPPINGS } from "../Utility/constants";
-import { CellId } from "../Utility/types";
 import Graph from "./Graph/Graph";
 import Node from "./Graph/Node";
 
@@ -83,5 +82,8 @@ export default abstract class Algorithm {
     }
     this.expanded = [];
     setCanEdit(true);
+    this.reset();
   }
+
+  abstract reset(): void;
 }

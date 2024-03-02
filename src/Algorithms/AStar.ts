@@ -97,7 +97,6 @@ export default class AStar extends Algorithm {
         }
       });
     }
-    this.reset()
   }
 
   reset() {

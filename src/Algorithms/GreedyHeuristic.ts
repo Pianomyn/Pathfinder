@@ -15,6 +15,10 @@ export default class GreedyHeuristic extends Algorithm {
     this.minHeap = new Heap((a, b) => a[0] - b[0]);
   }
 
+  reset() {
+    this.minHeap.clear()
+  }
+
   setGraph(graph: Graph) {
     this.graph = graph;
   }

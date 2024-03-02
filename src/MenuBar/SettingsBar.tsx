@@ -4,7 +4,6 @@
 import BFS from "../Algorithms/BFS";
 import DFS from "../Algorithms/DFS";
 import {
-  ALL_COLOR_MAPPINGS,
   COLOR_WEIGHT_MAPPINGS,
   DEFAULT_HEIGHT,
   DEFAULT_WEIGHT,
@@ -110,7 +109,7 @@ const SettingsBar = ({
   const [animationDelay, setAnimationDelay] = useState(ANIMATION_DELAY);
 
   return (
-    <div className="flex flex-col items-center mx-2">
+    <div className="w-4/12 flex flex-col items-center mx-2">
       <div className="flex items-center justify-center ">
         <select
           className="p-2 mx-0.5 w-3/12 text-center border-solid border"
@@ -124,9 +123,9 @@ const SettingsBar = ({
           <option value="BFS">BFS</option>
           <option value="DFS">DFS</option>
           <option value="DFS_RANDOM">DFS Random</option>
-          <option value="GREEDY_HEURISTIC">Greedy Heuristic</option>
+          <option value="GREEDY_HEURISTIC">Greedy</option>
           <option disabled>---- Weighted ----</option>
-          <option value="DJIKSTRAS">Djikstra's Algorithm</option>
+          <option value="DJIKSTRAS">Djikstra's</option>
           <option value="A_STAR">A*</option>
         </select>
         <input
@@ -186,7 +185,7 @@ const SettingsBar = ({
         <></>
       ) : (
         <small className="text-center text-red-500">
-          Height and Width must be integer values between 1 and 100 inclusive.
+          Value must be an integer between 1 and 100 inclusive.
         </small>
       )}
     </div>

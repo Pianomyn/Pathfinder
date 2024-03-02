@@ -14,68 +14,11 @@ export default class BFS extends Algorithm {
     this.animationDelay = animationDelay;
   }
 
+  reset() {}
+
   // Setters
   setExpanded(expanded: Node[]) {
     this.expanded = expanded;
-  }
-
-  async animatePath(args: any[]) {
-    const [setCanEdit] = args;
-    setCanEdit(false);
-    // Animate expanded cells
-    for (let node of this.expanded) {
-      if (
-        !cellIdIsEqual(node.getCellId(), this.graph.getSourceCellId()) &&
-        !cellIdIsEqual(node.getCellId(), this.graph.getTargetCellId())
-      ) {
-        this.graph.updateCellColor(
-          node.getCellId(),
-          ALL_COLOR_MAPPINGS.Visited
-        );
-        await new Promise((resolve) =>
-          setTimeout(resolve, this.animationDelay)
-        );
-      }
-    }
-
-    // Animate shortest path
-    const targetCellId = this.graph.getTargetCellId();
-    if (targetCellId) {
-      var currentNodeInShortestPath: Node | null =
-        this.graph.getNode(targetCellId);
-      while (currentNodeInShortestPath) {
-        if (
-          !cellIdIsEqual(
-            currentNodeInShortestPath.getCellId(),
-            this.graph.getSourceCellId()
-          ) &&
-          !cellIdIsEqual(
-            currentNodeInShortestPath.getCellId(),
-            this.graph.getTargetCellId()
-          )
-        ) {
-          this.graph.updateCellColor(
-            currentNodeInShortestPath.getCellId(),
-            ALL_COLOR_MAPPINGS.Path
-          );
-          await new Promise((resolve) =>
-            setTimeout(resolve, this.animationDelay)
-          );
-        }
-
-        var previouslyVisitedCellId =
-          currentNodeInShortestPath.getPreviouslyVisitedCellId();
-        if (previouslyVisitedCellId) {
-          currentNodeInShortestPath = this.graph.getNode(
-            previouslyVisitedCellId
-          );
-        } else {
-          currentNodeInShortestPath = null;
-        }
-      }
-    }
-    this.setExpanded([]);
-    setCanEdit(true);
   }
 
   insertIntoFrontier(frontier: Node[], node: Node): void {
