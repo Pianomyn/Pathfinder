@@ -8,6 +8,7 @@ Try it out here: https://pianomyn.github.io/pathfinder/
 I initially worked on this project while I was at university to
 - Help visualise some of the search algorithms I was learning about.
 - Learn about Javascript, HTML, CSS.
+
 After I graduated, I rebuilt the project with more modern technologies like React, Typescript and TailwindCSS.
 
 Credit to Clement Mihailescu for the idea of using a grid to represent a graph in pathfinding algorithms.
