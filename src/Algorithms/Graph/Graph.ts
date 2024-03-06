@@ -140,8 +140,9 @@ export default class Graph {
             currentNode.setPreviouslyVisitedCellId(null);
             this.updateCellColor(currentId, ALL_COLOR_MAPPINGS.Weight);
           } else if (currentNode.getIsWall()) {
+            console.log('REACHED', currentNode)
           }
-          if (cellIdIsEqual(currentNode.getCellId(), this.sourceCellId)) {
+          else if (cellIdIsEqual(currentNode.getCellId(), this.sourceCellId)) {
           } else if (
             cellIdIsEqual(currentNode.getCellId(), this.targetCellId)
           ) {
