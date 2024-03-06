@@ -6,7 +6,10 @@ In addition to this basic problem statement, there are 2 additional variables
 - Weight: These points are more "costly" to traverse.
   - Only Weighted algorithms will take weights into account.
 - Wall: These points are impassable.
-<br/>
+
+Credit to Clement Mihailescu for the idea of using a grid to represent a graph in pathfinding algorithms.
+https://github.com/clementmihailescu
+
 Try it out here: https://pianomyn.github.io/pathfinder/
 
 ## Usage
