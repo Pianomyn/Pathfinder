@@ -11,9 +11,6 @@ I initially worked on this project while I was at university to
 
 After I graduated, I rebuilt the project with more modern technologies like React, Typescript and TailwindCSS.
 
-Credit to Clement Mihailescu for the idea of using a grid to represent a graph in pathfinding algorithms.
-His (much cooler) implementation of a pathfinding visualiser can be found here: https://clementmihailescu.github.io/Pathfinding-Visualizer/#
-
 ## Usage
 UI Usage from left to right (Please see Gifs below if unclear)
 - Algorithm drop down: Select the algorithm you want to visualise
