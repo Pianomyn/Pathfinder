@@ -3,6 +3,8 @@
 Pathfinding algorithms are used to find the shortest path (or sometimes just any valid path) between 2 points (source and target).
 Additionally, there are "Weights", which are more costly to traverse and "Walls" which are impassable.
 
+Try it out here: https://pianomyn.github.io/pathfinder/
+
 I initially worked on this project while I was at university to
 - Help visualise some of the search algorithms I was learning about.
 - Learn about Javascript, HTML, CSS.
@@ -10,8 +12,6 @@ After I graduated, I rebuilt the project with more modern technologies like Reac
 
 Credit to Clement Mihailescu for the idea of using a grid to represent a graph in pathfinding algorithms.
 His (much cooler) implementation of a pathfinding visualiser can be found here: https://clementmihailescu.github.io/Pathfinding-Visualizer/#
-
-Try it out here: https://pianomyn.github.io/pathfinder/
 
 ## Usage
 UI Usage from left to right (Please see Gifs below if unclear)
