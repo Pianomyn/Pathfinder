@@ -90,30 +90,29 @@ function Cell({
               PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] ==
                 PLACEABLE_COLOR_MAPPINGS.Weight)
           )
-        )
-        {
+        ) {
           return;
-          }
+        }
 
         var currentNode = graph.getNode(cellId);
 
         if (
           cellIdIsEqual(currentNode.getCellId(), sourceCellId) ||
           cellIdIsEqual(currentNode.getCellId(), targetCellId)
-        )
-        {
-
+        ) {
           return;
-          }
+        }
 
-        const newCellType =
-          PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] = PLACEABLE_COLOR_MAPPINGS[cellTypeAsString];
+        const newCellType = (PLACEABLE_COLOR_MAPPINGS[cellTypeAsString] =
+          PLACEABLE_COLOR_MAPPINGS[cellTypeAsString]);
         setCellColor(newCellType);
         var currentNode = graph.getNode(cellId);
         if (newCellType === PLACEABLE_COLOR_MAPPINGS.Wall) {
           currentNode.setIsWall(true);
+          currentNode.setIsWeight(false);
         } else if (newCellType === PLACEABLE_COLOR_MAPPINGS.Weight) {
           currentNode.setIsWeight(true);
+          currentNode.setIsWall(false);
         }
       }}
       onClick={() => {
@@ -151,13 +150,19 @@ function Cell({
               : PLACEABLE_COLOR_MAPPINGS[cellTypeAsString];
           setCellColor(newCellType);
           var currentNode = graph.getNode(cellId);
-          if (newCellType == ALL_COLOR_MAPPINGS.Unvisited || newCellType == ALL_COLOR_MAPPINGS.Wall) {
+          if (
+            newCellType == ALL_COLOR_MAPPINGS.Unvisited ||
+            newCellType == ALL_COLOR_MAPPINGS.Wall
+          ) {
             currentNode.setIsWall(!currentNode.getIsWall());
-            currentNode.setIsWeight(false)
+            currentNode.setIsWeight(false);
           }
-          if (newCellType == ALL_COLOR_MAPPINGS.Unvisited || newCellType == ALL_COLOR_MAPPINGS.Weight) {
+          if (
+            newCellType == ALL_COLOR_MAPPINGS.Unvisited ||
+            newCellType == ALL_COLOR_MAPPINGS.Weight
+          ) {
             currentNode.setIsWeight(!currentNode.getIsWeight());
-            currentNode.setIsWall(false)
+            currentNode.setIsWall(false);
           }
         }
       }}
