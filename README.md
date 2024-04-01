@@ -5,12 +5,6 @@ Additionally, there are "Weights", which are more costly to traverse and "Walls"
 
 Try it out here: https://pianomyn.github.io/pathfinder/
 
-I initially worked on this project while I was at university to
-- Help visualise some of the search algorithms I was learning about.
-- Learn about Javascript, HTML, CSS.
-
-After I graduated, I rebuilt the project with more modern technologies like React, Typescript and TailwindCSS.
-
 ## Usage
 UI Usage from left to right (Please see Gifs below if unclear)
 - Algorithm drop down: Select the algorithm you want to visualise
